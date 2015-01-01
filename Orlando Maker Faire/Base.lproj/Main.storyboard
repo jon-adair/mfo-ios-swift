@@ -288,23 +288,23 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="1de-Ju-eg9">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="48" id="1de-Ju-eg9">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1de-Ju-eg9" id="tfV-pd-SkY">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventLocation" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0M-pM-iup">
-                                                    <rect key="frame" x="15" y="8" width="577" height="97"/>
+                                                    <rect key="frame" x="16" y="8" width="576" height="31.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Q0M-pM-iup" secondAttribute="bottom" constant="-8" id="Jqw-ue-TZi"/>
-                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="trailing" secondItem="tfV-pd-SkY" secondAttribute="trailingMargin" id="kHc-5w-Ci2"/>
-                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="top" secondItem="tfV-pd-SkY" secondAttribute="topMargin" id="nK1-6g-KKQ"/>
-                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="leading" secondItem="tfV-pd-SkY" secondAttribute="leadingMargin" constant="7" id="od4-z2-3hx"/>
+                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="trailing" secondItem="tfV-pd-SkY" secondAttribute="trailingMargin" id="BgJ-Ly-c2A"/>
+                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="top" secondItem="tfV-pd-SkY" secondAttribute="topMargin" id="Iom-OI-1bJ"/>
+                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="bottom" secondItem="tfV-pd-SkY" secondAttribute="bottomMargin" id="OSP-X1-Vdy"/>
+                                                <constraint firstItem="Q0M-pM-iup" firstAttribute="leading" secondItem="tfV-pd-SkY" secondAttribute="leadingMargin" constant="8" id="dmr-V9-jSZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

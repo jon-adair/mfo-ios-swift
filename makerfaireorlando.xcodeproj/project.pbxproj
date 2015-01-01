@@ -319,10 +319,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Maker Effect Foundation, Inc. (PW5CL64ZT8)";
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = makerfaireorlando;
+				PROVISIONING_PROFILE = "d37e4ba0-4564-44a3-8523-7dd7ffd361dc";
 			};
 			name = Debug;
 		};
@@ -331,10 +333,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Maker Effect Foundation, Inc. (PW5CL64ZT8)";
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = makerfaireorlando;
+				PROVISIONING_PROFILE = "d37e4ba0-4564-44a3-8523-7dd7ffd361dc";
 			};
 			name = Release;
 		};
