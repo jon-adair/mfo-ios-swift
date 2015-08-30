@@ -97,9 +97,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
                 var newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
+                
+                var text = "8-bit shabby chic post-ironic heirloom jean shorts Pinterest. Tumblr fanny pack lomo, DIY sustainable McSweeney's master cleanse High Life bitters gentrify VHS cred next level tote bag. Flannel craft beer four loko, single-origin coffee iPhone McSweeney's umami farm-to-table pickled. Mlkshk kitsch keytar mustache readymade, pug paleo PBR cold-pressed ugh cronut twee kogi Etsy. Tousled locavore fanny pack, brunch selvage aesthetic kitsch letterpress Vice chia mustache. Bespoke disrupt tousled blog. Bitters flexitarian VHS biodiesel, Shoreditch typewriter sustainable tattooed ennui."
+     
+                
+                var newEvent1 = Event(name: "testitem", image_large: image_large, description: text, date: date, start_time: "10:00", end_time: "2:00", duration: "20 min", cost: "$40", additional_info: text, location: "my basement")
                 println(newEvent)
                 
                 self.events[dayCounter].append(newEvent)
+                self.events[dayCounter].append(newEvent1)
             }
         }
         

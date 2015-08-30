@@ -16,8 +16,9 @@ class EventDetailViewController : UIViewController {
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventCost: UILabel!
     @IBOutlet weak var eventDuration: UILabel!
-    @IBOutlet weak var eventDescription: UILabel!
-    @IBOutlet weak var eventAdditionalInfo: UILabel!
+    @IBOutlet weak var eventDescription: UITextView!
+    @IBOutlet weak var eventAdditionalInfo: UITextView!
+   
     
     
     var event : Event?
@@ -26,8 +27,16 @@ class EventDetailViewController : UIViewController {
         super.init(coder: aDecoder)
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.x>0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         println(event?.description)
         self.title = event?.name
         
@@ -43,10 +52,20 @@ class EventDetailViewController : UIViewController {
         
         eventCost.text = event?.cost
         eventDuration.text = event?.duration
+        
+        
+        // longer stuff
+      
         eventDescription.text = event?.description
         eventAdditionalInfo.text = event?.additional_info
+        eventAdditionalInfo.sizeToFit()
+        eventDescription.sizeToFit()
+        eventAdditionalInfo.layoutIfNeeded()
+        eventDescription.layoutIfNeeded()
+        
 
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
