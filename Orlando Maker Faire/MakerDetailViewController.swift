@@ -24,6 +24,7 @@ class MakerDetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.title = self.maker?.project_name
         
         makerTitle.text = self.maker?.project_name
         makerDescription.text = self.maker?.maker_description

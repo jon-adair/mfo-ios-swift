@@ -12,6 +12,13 @@ import UIKit
 class EventDetailViewController : UIViewController {
 
     @IBOutlet var eventTitle: UILabel!
+    @IBOutlet var eventLocation: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
+    @IBOutlet weak var eventCost: UILabel!
+    @IBOutlet weak var eventDuration: UILabel!
+    @IBOutlet weak var eventDescription: UILabel!
+    @IBOutlet weak var eventAdditionalInfo: UILabel!
+    
     
     var event : Event?
     
@@ -21,8 +28,24 @@ class EventDetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(self.event?.summary)
-        eventTitle.text = self.event?.summary
+        println(event?.description)
+        self.title = event?.name
+        
+        eventTitle.text = event?.name
+        eventLocation.text = event?.location
+        if event?.end_time != nil {
+            var timeText = event?.start_time 
+            
+            eventTime.text = timeText
+        } else {
+            eventTime.text = event?.start_time
+        }
+        
+        eventCost.text = event?.cost
+        eventDuration.text = event?.duration
+        eventDescription.text = event?.description
+        eventAdditionalInfo.text = event?.additional_info
+
     }
     
     override func didReceiveMemoryWarning() {

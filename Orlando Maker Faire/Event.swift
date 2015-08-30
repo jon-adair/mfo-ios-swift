@@ -9,14 +9,43 @@
 import Foundation
 
 class Event {
-    var summary:String?
-    var event_description:String?
+    
+    var name:String?
+    var image_large:String?
+    var description:String?
+    var date:String?
+    var start_time:String?
+    var end_time:String?
+    var duration:String?
+    var cost:String?
+    var additional_info:String?
     var location:String?
-    var link:String?
-    var start:NSDate?
-    var end:NSDate?
     
+    init(
+    name:String?,
+    image_large:String?,
+    description:String?,
+    date:String?,
+    start_time:String?,
+    end_time:String?,
+    duration:String?,
+    cost:String?,
+    additional_info:String?,
+    location:String?)
+    {
+        self.name = name
+        self.image_large = image_large
+        self.description = description
+        self.date = date
+        self.start_time = start_time
+        self.end_time = end_time
+        self.duration = duration
+        self.cost = cost
+        self.additional_info = additional_info
+        self.location = location
+    }
     
+    /*
     init(summary:String?, event_description:String?, location:String?, link:String?, start:NSDate?, end:NSDate?) {
         self.summary = summary
         self.event_description = event_description
@@ -24,5 +53,5 @@ class Event {
         self.link = link
         self.start = start
         self.end = end
-    }
+    }*/
 }
