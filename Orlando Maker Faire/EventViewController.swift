@@ -42,8 +42,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
         
+        
         let event = self.events[daySegmentedControl.selectedSegmentIndex][indexPath.row]
-        cell.textLabel!.text = event.summary
+        cell.textLabel!.text = event.event_description
         cell.detailTextLabel!.text = event.location
         
         return cell
@@ -60,7 +61,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func didReceiveAPIResults(results: NSDictionary) {
         let days: NSArray = results["days"] as! NSArray
         self.events.append([Event]())
-        for dayCounter in 0...1 {
+        let count = days.count
+        for dayCounter in 0...count {
             let day: NSDictionary = days[dayCounter] as! NSDictionary
             let date_title = day["date_title"] as! NSString
             // daySegmentedControl.setTitle(day["date_title"] as! String!, forSegmentAtIndex: 0)
