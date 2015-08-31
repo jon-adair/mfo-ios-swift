@@ -51,7 +51,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var detailViewController: EventDetailViewController = segue.destinationViewController as! EventDetailViewController
+        var detailViewController: EventDetailTableViewController = segue.destinationViewController as! EventDetailTableViewController
         var eventIndex = eventTableView.indexPathForSelectedRow()!.row
         var selectedEvent = self.events[daySegmentedControl.selectedSegmentIndex][eventIndex]
         detailViewController.event = selectedEvent
@@ -98,46 +98,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
                 var newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
                 
-                var text = "8-bit shabby chic post-ironic heirloom jean shorts Pinterest. Tumblr fanny pack lomo, DIY sustainable McSweeney's master cleanse High Life bitters gentrify VHS cred next level tote bag. Flannel craft beer four loko, single-origin coffee iPhone McSweeney's umami farm-to-table pickled. Mlkshk kitsch keytar mustache readymade, pug paleo PBR cold-pressed ugh cronut twee kogi Etsy. Tousled locavore fanny pack, brunch selvage aesthetic kitsch letterpress Vice chia mustache. Bespoke disrupt tousled blog. Bitters flexitarian VHS biodiesel, Shoreditch typewriter sustainable tattooed ennui."
-     
-                
-                var newEvent1 = Event(name: "testitem", image_large: image_large, description: text, date: date, start_time: "10:00", end_time: "2:00", duration: "20 min", cost: "$40", additional_info: text, location: "my basement")
-                println(newEvent)
-                
                 self.events[dayCounter].append(newEvent)
-                self.events[dayCounter].append(newEvent1)
             }
         }
         
-//        let allResults: [NSDictionary] = results["items"] as! [NSDictionary]
-//        for result:NSDictionary in allResults {
-//            
-//            var location: String? = result["location"] as? String
-//            var link: String? = result["htmllink"] as? String
-//            var event_description: String? = result["description"] as? String
-//            var summary: String? = result["summary"] as? String
-//            
-//            
-//            var formatter: NSDateFormatter = NSDateFormatter()
-//            formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'-'HH':'mm'"
-//            var startDict : NSDictionary = result["start"] as! NSDictionary
-//            var endDict : NSDictionary = result["end"] as! NSDictionary
-//            
-//            var startString : String = startDict["dateTime"] as! String
-//            var endString : String = endDict["dateTime"] as! String
-//            
-//            println(startString)
-//            
-//            var start: NSDate = formatter.dateFromString(startString)!
-//            var end: NSDate = formatter.dateFromString(endString)!
-//            println(start)
-//            
-//            
-//            var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
-//            
-//            self.events.append(newEvent)
-//        }
-//       
         self.eventTableView.reloadData()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }

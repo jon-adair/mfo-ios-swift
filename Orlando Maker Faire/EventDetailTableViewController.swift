@@ -1,49 +1,34 @@
 //
-//  EventDetailViewController.swift
+//  EventDetailTableViewController.swift
 //  Maker Faire Orlando
 //
-//  Created by Conner Brooks on 7/12/14.
-//  Copyright (c) 2014 Conner Brooks. All rights reserved.
+//  Created by Conner Brooks on 8/30/15.
+//  Copyright (c) 2015 Conner Brooks. All rights reserved.
 //
-
 
 import UIKit
 
-class EventDetailViewController : UIViewController {
 
-    @IBOutlet var eventTitle: UILabel!
-    @IBOutlet var eventLocation: UILabel!
+class EventDetailTableViewController : UITableViewController {
+ 
+    @IBOutlet weak var eventTitle: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventCost: UILabel!
     @IBOutlet weak var eventDuration: UILabel!
-    @IBOutlet weak var eventDescription: UITextView!
-    @IBOutlet weak var eventAdditionalInfo: UITextView!
-   
+    @IBOutlet weak var eventDescription: UILabel!
+    @IBOutlet weak var eventAdditionalInfo: UILabel!
     
-    
-    var event : Event?
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x>0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
+    var event:Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        println(event?.description)
         self.title = event?.name
         
         eventTitle.text = event?.name
         eventLocation.text = event?.location
         if event?.end_time != nil {
-            var timeText = event?.start_time 
+            var timeText = event?.start_time
             
             eventTime.text = timeText
         } else {
@@ -53,22 +38,22 @@ class EventDetailViewController : UIViewController {
         eventCost.text = event?.cost
         eventDuration.text = event?.duration
         
-        
         // longer stuff
-      
         eventDescription.text = event?.description
         eventAdditionalInfo.text = event?.additional_info
+        /*
         eventAdditionalInfo.sizeToFit()
         eventDescription.sizeToFit()
         eventAdditionalInfo.layoutIfNeeded()
         eventDescription.layoutIfNeeded()
+        */
         
-
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
+    
+    
 }

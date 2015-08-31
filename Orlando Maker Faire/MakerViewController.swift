@@ -16,9 +16,9 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var makerTableView : UITableView!
     
-    var makers: [Maker] = []
+    var projects: [Project] = []
     
-    var searchResults: [Maker] = []
+    var searchResults: [Project] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return makers.count
+        return projects.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -42,18 +42,18 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
     
         
-        let maker = self.makers[indexPath.row]
+        let maker = self.projects[indexPath.row]
         cell.textLabel!.text = maker.project_name
-        cell.detailTextLabel!.text = maker.organization
+        cell.detailTextLabel!.text = maker.location
         
         return cell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var detailViewController: MakerDetailViewController = segue.destinationViewController as! MakerDetailViewController
+        var detailViewController: MakerDetailTableViewController = segue.destinationViewController as! MakerDetailTableViewController
         var makerIndex = makerTableView.indexPathForSelectedRow()!.row
-        var selectedMaker = self.makers[makerIndex]
-        detailViewController.maker = selectedMaker
+        var selectedProject = self.projects[makerIndex]
+        detailViewController.project = selectedProject
         
     }
     
@@ -63,20 +63,27 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     
         for result:NSDictionary in allResults {
             var project_name: String? = result["project_name"] as? String
-            var maker_description: String? = result["description"] as? String
+            var project_description: String? = result["description"] as? String
             var web_site: String? = result["web_site"] as? String
             var organization: String? = result["organization"] as? String
             var project_short_summary: String? = result["project_short_summary"] as? String
             
-            //var promo_url: String? = result["promo_url"] as? String
-            //var qrcode_url: String? = result["qrcode_url"] as? String
-            //var location: String? = result["location"] as? String
-            //var category: String? = result["category"] as? String
-            //var photo_link: String? = result["photo_link"] as? String
+            var location: String? = result["location"] as? String
+            //println(location)
+            var category: String? = result["category"] as? String
+            var photo_link: String? = result["photo_link"] as? String
             
-            var newMaker = Maker(project_name: project_name, maker_description: maker_description, web_site: web_site, organization: organization, project_short_summary: project_short_summary)
             
-            self.makers.append(newMaker)
+            var makerDict: NSDictionary = result["maker"] as! NSDictionary
+            var makerName = makerDict["name"] as! String
+            var makerDesc = makerDict["description"] as! String
+            //var makerPhoto = makerDict["photo_link"] as! String
+            
+            var maker = Maker(name: makerName, description: makerDesc)
+            
+            var newProject = Project(project_name: project_name, description: project_description, web_site: web_site, organization: organization, project_short_summary: project_short_summary, photo_link: photo_link, maker: maker, location: location)
+            
+            self.projects.append(newProject)
         }
         
         self.makerTableView.reloadData()
