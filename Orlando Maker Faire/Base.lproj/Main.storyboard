@@ -277,12 +277,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="top" secondItem="Kor-90-ATi" secondAttribute="topMargin" id="92e-bm-146"/>
-                                                <constraint firstItem="PEk-5h-INR" firstAttribute="trailing" secondItem="Kor-90-ATi" secondAttribute="trailingMargin" id="Kxc-jt-bQx"/>
-                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="leading" secondItem="Kor-90-ATi" secondAttribute="leadingMargin" constant="8" id="Y9E-EL-cq4"/>
-                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="trailing" secondItem="Kor-90-ATi" secondAttribute="trailingMargin" id="aWt-FR-GM4"/>
-                                                <constraint firstItem="PEk-5h-INR" firstAttribute="bottom" secondItem="Kor-90-ATi" secondAttribute="bottomMargin" id="rJY-nw-1YW"/>
-                                                <constraint firstItem="PEk-5h-INR" firstAttribute="leading" secondItem="Kor-90-ATi" secondAttribute="leadingMargin" constant="8" id="wam-MU-C0m"/>
+                                                <constraint firstItem="PEk-5h-INR" firstAttribute="top" secondItem="pVX-IO-Z2q" secondAttribute="bottom" constant="8.5" id="4W4-dm-JsB"/>
+                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="leading" secondItem="Kor-90-ATi" secondAttribute="leadingMargin" constant="8" id="CpY-vu-dav"/>
+                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="top" secondItem="Kor-90-ATi" secondAttribute="topMargin" id="L1a-AP-gGq"/>
+                                                <constraint firstItem="pVX-IO-Z2q" firstAttribute="trailing" secondItem="Kor-90-ATi" secondAttribute="trailingMargin" id="RsO-WQ-nim"/>
+                                                <constraint firstItem="PEk-5h-INR" firstAttribute="leading" secondItem="Kor-90-ATi" secondAttribute="leadingMargin" constant="8" id="ipl-ll-eKE"/>
+                                                <constraint firstItem="PEk-5h-INR" firstAttribute="trailing" secondItem="Kor-90-ATi" secondAttribute="trailingMargin" id="qFD-W6-fVe"/>
+                                                <constraint firstItem="PEk-5h-INR" firstAttribute="bottom" secondItem="Kor-90-ATi" secondAttribute="bottomMargin" id="r8S-0t-roQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
