@@ -11,6 +11,7 @@ import UIKit
 
 class MakerDetailTableViewController : UITableViewController {
     
+    @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var projectName: UILabel!
     @IBOutlet weak var projectLocation: UILabel!
     @IBOutlet weak var projectDescription: UILabel!
@@ -30,10 +31,16 @@ class MakerDetailTableViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = self.maker?.project_name
+        self.title = self.project?.project_name
         
         tableView.estimatedRowHeight = 68.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        //load image
+        if project?.photo_link != nil {
+            let checkedUrl = NSURL(string: (project?.photo_link ?? ""))
+            ImageDownloadManager.sharedInstance.downloadImage(checkedUrl!, imageURL: projectImage)
+        }
         
         // project
         projectName.text = self.project?.project_name

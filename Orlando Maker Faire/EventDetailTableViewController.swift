@@ -11,6 +11,7 @@ import UIKit
 
 class EventDetailTableViewController : UITableViewController {
  
+    @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventTime: UILabel!
@@ -42,13 +43,18 @@ class EventDetailTableViewController : UITableViewController {
         tableView.estimatedRowHeight = 68.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        //load image
+        if event?.image_medium != nil {
+        let checkedUrl = NSURL(string: (event?.image_medium ?? ""))
+            ImageDownloadManager.sharedInstance.downloadImage(checkedUrl!, imageURL: eventImage)
+        }
+        
         self.title = event?.name
         
         eventTitle.text = event?.name
         eventLocation.text = event?.location
-        if event?.end_time != nil {
-            var timeText = event?.start_time
-            
+        if event?.end_time != "" {
+            var timeText = (event?.start_time ?? "") + " - " + (event?.end_time ?? "")
             eventTime.text = timeText
         } else {
             eventTime.text = event?.start_time
@@ -56,16 +62,9 @@ class EventDetailTableViewController : UITableViewController {
         
         eventCost.text = event?.cost
         eventDuration.text = event?.duration
-        
-        // longer stuff
         eventDescription.text = event?.description
         eventAdditionalInfo.text = event?.additional_info
-        /*
-        eventAdditionalInfo.sizeToFit()
-        eventDescription.sizeToFit()
-        eventAdditionalInfo.layoutIfNeeded()
-        eventDescription.layoutIfNeeded()
-        */
+        
         
     }
     

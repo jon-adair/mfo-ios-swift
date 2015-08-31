@@ -74,6 +74,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 var name: String? = e["name"] as? String
                 var image_large: String? = e["image_large"] as? String
+                var image_medium: String? = e["image_medium"] as? String
                 var description: String? = e["description"] as? String
                 var date: String? = e["date"] as? String
                 var start_time: String? = e["start_time"] as? String
@@ -96,7 +97,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 */
                 
                 //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
-                var newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
+                var newEvent = Event(name: name, image_large: image_large, image_medium: image_medium, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
                 
                 self.events[dayCounter].append(newEvent)
             }

@@ -222,6 +222,7 @@
                         <outlet property="makerDescription" destination="5V6-ta-6wc" id="rHW-8R-UZX"/>
                         <outlet property="makerName" destination="aml-d1-pzR" id="6gP-N0-Rcm"/>
                         <outlet property="projectDescription" destination="Nh8-WH-Yzb" id="XRm-hf-9ih"/>
+                        <outlet property="projectImage" destination="K0u-WD-wVf" id="uXu-oE-QPa"/>
                         <outlet property="projectLocation" destination="4KU-b3-r0f" id="gVt-oG-eJQ"/>
                         <outlet property="projectName" destination="Pfl-kA-oWq" id="i24-77-qzN"/>
                     </connections>
@@ -416,6 +417,7 @@
                         <outlet property="eventCost" destination="PnW-MT-uDz" id="ypS-jS-225"/>
                         <outlet property="eventDescription" destination="kGP-oo-Lg5" id="X9V-H1-Qdp"/>
                         <outlet property="eventDuration" destination="gOR-lg-nv3" id="7xZ-lu-SV0"/>
+                        <outlet property="eventImage" destination="xNO-Vm-NpG" id="a54-YV-7mx"/>
                         <outlet property="eventLocation" destination="Q0M-pM-iup" id="WGL-hA-u9c"/>
                         <outlet property="eventTime" destination="PEk-5h-INR" id="x37-mh-mJG"/>
                         <outlet property="eventTitle" destination="pVX-IO-Z2q" id="wwp-mG-Ytb"/>
