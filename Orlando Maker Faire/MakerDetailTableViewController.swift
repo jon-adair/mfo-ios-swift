@@ -23,14 +23,17 @@ class MakerDetailTableViewController : UITableViewController {
         super.init(coder: aDecoder)
     }
     
-    /*
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-    }*/
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.title = self.maker?.project_name
+        
+        tableView.estimatedRowHeight = 68.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // project
         projectName.text = self.project?.project_name

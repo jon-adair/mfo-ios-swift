@@ -21,6 +21,19 @@ class EventDetailTableViewController : UITableViewController {
     
     var event:Event?
     
+    /*
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+    }*/
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        tableView.reloadData()
+        tableView.estimatedRowHeight = 68.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = event?.name
