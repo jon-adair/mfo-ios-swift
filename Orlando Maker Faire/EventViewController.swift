@@ -45,7 +45,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let event = self.events[daySegmentedControl.selectedSegmentIndex][indexPath.row]
         cell.textLabel!.text = event.name
-        cell.detailTextLabel!.text = event.location
+        cell.detailTextLabel!.text = event.start_time
         
         return cell
     }
