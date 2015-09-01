@@ -18,7 +18,8 @@ class EventDetailTableViewController : UITableViewController {
     @IBOutlet weak var eventCost: UILabel!
     @IBOutlet weak var eventDuration: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
-    @IBOutlet weak var eventAdditionalInfo: UILabel!
+    @IBOutlet weak var eventAdditionalInfo: UITextView!
+    
     
     var event:Event?
     
@@ -63,8 +64,17 @@ class EventDetailTableViewController : UITableViewController {
         eventCost.text = event?.cost
         eventDuration.text = event?.duration
         eventDescription.text = event?.description
-        eventAdditionalInfo.text = event?.additional_info
+        //eventAdditionalInfo.text = event?.additional_info
         
+        var modifiedFont = NSString(format:"<span style=\"font-family: HelveticaNeue-Light; font-size: 17\">%@</span>", (event?.additional_info ?? "")) as String
+        
+        var attrStr = NSAttributedString(
+            data: modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!,
+            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding],
+            documentAttributes: nil,
+            error: nil)
+
+        eventAdditionalInfo.attributedText = attrStr
         
     }
     

@@ -389,18 +389,19 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="awH-nB-DsB" id="mBX-mN-P1X">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="additionalInfo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJR-gt-GxA">
-                                                    <rect key="frame" x="16" y="11" width="576" height="110"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-yJ-tUz">
+                                                    <rect key="frame" x="8" y="8" width="584" height="112.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="kJR-gt-GxA" firstAttribute="top" secondItem="mBX-mN-P1X" secondAttribute="topMargin" constant="3" id="I5k-ez-6Ia"/>
-                                                <constraint firstItem="kJR-gt-GxA" firstAttribute="bottom" secondItem="mBX-mN-P1X" secondAttribute="bottomMargin" id="PcL-G1-0Ug"/>
-                                                <constraint firstItem="kJR-gt-GxA" firstAttribute="trailing" secondItem="mBX-mN-P1X" secondAttribute="trailingMargin" id="ce4-Vv-siK"/>
-                                                <constraint firstItem="kJR-gt-GxA" firstAttribute="leading" secondItem="mBX-mN-P1X" secondAttribute="leadingMargin" constant="8" id="qZr-TI-6T1"/>
+                                                <constraint firstItem="X6j-yJ-tUz" firstAttribute="top" secondItem="mBX-mN-P1X" secondAttribute="topMargin" id="70G-V5-zsy"/>
+                                                <constraint firstItem="X6j-yJ-tUz" firstAttribute="trailing" secondItem="mBX-mN-P1X" secondAttribute="trailingMargin" id="mbj-BZ-aO4"/>
+                                                <constraint firstItem="X6j-yJ-tUz" firstAttribute="bottom" secondItem="mBX-mN-P1X" secondAttribute="bottomMargin" id="pxb-N6-S41"/>
+                                                <constraint firstItem="X6j-yJ-tUz" firstAttribute="leading" secondItem="mBX-mN-P1X" secondAttribute="leadingMargin" id="rm8-la-s10"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -413,7 +414,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="eventAdditionalInfo" destination="kJR-gt-GxA" id="w9H-c9-Hxx"/>
+                        <outlet property="eventAdditionalInfo" destination="X6j-yJ-tUz" id="7Qt-jY-4Bn"/>
                         <outlet property="eventCost" destination="PnW-MT-uDz" id="ypS-jS-225"/>
                         <outlet property="eventDescription" destination="kGP-oo-Lg5" id="X9V-H1-Qdp"/>
                         <outlet property="eventDuration" destination="gOR-lg-nv3" id="7xZ-lu-SV0"/>
@@ -586,7 +587,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Events" width="25" height="25"/>
+        <image name="Events" width="24" height="24"/>
         <image name="Floor 1" width="781" height="677"/>
         <image name="Makers" width="17" height="27"/>
         <image name="Makey" width="310" height="232"/>
