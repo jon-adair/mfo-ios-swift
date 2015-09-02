@@ -111,8 +111,13 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var detailViewController: MakerDetailTableViewController = segue.destinationViewController as! MakerDetailTableViewController
         var makerIndex = makerTableView.indexPathForSelectedRow()!.row
-        var selectedProject = self.projects[makerIndex]
-        detailViewController.project = selectedProject
+        if (self.resultSearchController.active) {
+            var selectedProject = self.searchResults[makerIndex]
+            detailViewController.project = selectedProject
+        } else {
+            var selectedProject = self.projects[makerIndex]
+            detailViewController.project = selectedProject
+        }
         resultSearchController.active = false
     }
     
