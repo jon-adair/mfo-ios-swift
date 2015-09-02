@@ -12,6 +12,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     let kCellIdentifier: String = "MakerCell"
     
+    var refreshControl:UIRefreshControl!
     var api: MakerAPI?
     
     @IBOutlet var makerTableView : UITableView!
@@ -26,11 +27,21 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.api = MakerAPI(delegate: self)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.api!.getMakers()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.makerTableView.addSubview(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        self.api!.getMakers()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,9 +69,11 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func didReceiveAPIResults(results: NSDictionary) {
+        self.refreshControl.endRefreshing()
+        var newProjects: [Project] = []
         
         let allResults: [NSDictionary] = results["accepteds"] as! [NSDictionary]
-    
+        
         for result:NSDictionary in allResults {
             var project_name: String? = result["project_name"] as? String
             var project_description: String? = result["description"] as? String
@@ -83,9 +96,10 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             var newProject = Project(project_name: project_name, description: project_description, web_site: web_site, organization: organization, project_short_summary: project_short_summary, photo_link: photo_link, maker: maker, location: location)
             
-            self.projects.append(newProject)
+            newProjects.append(newProject)
         }
         
+        self.projects = newProjects
         self.makerTableView.reloadData()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }

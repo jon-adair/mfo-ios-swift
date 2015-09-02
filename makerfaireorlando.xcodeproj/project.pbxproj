@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		110345AD1945759200F5C99F /* makerfaireorlando.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makerfaireorlando.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		110345AD1945759200F5C99F /* makerfaireorlando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makerfaireorlando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		110345B11945759200F5C99F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		110345B21945759200F5C99F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		110345B41945759200F5C99F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		110345AE1945759200F5C99F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				110345AD1945759200F5C99F /* makerfaireorlando.temp_caseinsensitive_rename.app */,
+				110345AD1945759200F5C99F /* makerfaireorlando.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		110345AC1945759200F5C99F /* makerfaireorlando.temp_caseinsensitive_rename */ = {
+		110345AC1945759200F5C99F /* makerfaireorlando */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 110345CB1945759200F5C99F /* Build configuration list for PBXNativeTarget "makerfaireorlando.temp_caseinsensitive_rename" */;
+			buildConfigurationList = 110345CB1945759200F5C99F /* Build configuration list for PBXNativeTarget "makerfaireorlando" */;
 			buildPhases = (
 				110345A91945759200F5C99F /* Sources */,
 				110345AA1945759200F5C99F /* Frameworks */,
@@ -151,9 +151,9 @@
 			);
 			dependencies = (
 			);
-			name = makerfaireorlando.temp_caseinsensitive_rename;
+			name = makerfaireorlando;
 			productName = "Orlando Maker Faire";
-			productReference = 110345AD1945759200F5C99F /* makerfaireorlando.temp_caseinsensitive_rename.app */;
+			productReference = 110345AD1945759200F5C99F /* makerfaireorlando.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				110345AC1945759200F5C99F /* makerfaireorlando.temp_caseinsensitive_rename */,
+				110345AC1945759200F5C99F /* makerfaireorlando */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = makerfaireorlando.temp_caseinsensitive_rename;
+				PRODUCT_NAME = makerfaireorlando;
 			};
 			name = Debug;
 		};
@@ -334,7 +334,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = makerfaireorlando.temp_caseinsensitive_rename;
+				PRODUCT_NAME = makerfaireorlando;
 			};
 			name = Release;
 		};
@@ -350,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		110345CB1945759200F5C99F /* Build configuration list for PBXNativeTarget "makerfaireorlando.temp_caseinsensitive_rename" */ = {
+		110345CB1945759200F5C99F /* Build configuration list for PBXNativeTarget "makerfaireorlando" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				110345CC1945759200F5C99F /* Debug */,

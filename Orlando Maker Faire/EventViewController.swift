@@ -11,7 +11,9 @@ import UIKit
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventAPIProtocol {
     
     @IBOutlet weak var daySegmentedControl: UISegmentedControl!
+
     let kCellIdentifier: String = "EventCell"
+    var refreshControl:UIRefreshControl!
     
     var api: EventAPI?
     
@@ -27,6 +29,16 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.api?.getEvents()
         self.daySegmentedControl.addTarget(self, action: Selector("handleSegment:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.eventTableView.addSubview(refreshControl)
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        self.api?.getEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,8 +74,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func didReceiveAPIResults(results: NSDictionary) {
+        self.refreshControl.endRefreshing()
+        
         let days: NSArray = results["days"] as! NSArray
-        self.events.append([Event]())
+        
+        var newEvents: [[Event]] = [[]]
+        
+        newEvents.append([Event]())
         let count = days.count - 1
         for dayCounter in 0...count {
             let day: NSDictionary = days[dayCounter] as! NSDictionary
@@ -102,10 +119,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
                 var newEvent = Event(name: name, image_large: image_large, image_medium: image_medium, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
                 
-                self.events[dayCounter].append(newEvent)
+                newEvents[dayCounter].append(newEvent)
             }
         }
         
+        self.events = newEvents
         self.eventTableView.reloadData()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
