@@ -22,6 +22,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var events: [[Event]] = [[]]
     
+
+    let indicator:UIActivityIndicatorView = UIActivityIndicatorView  (activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,9 +34,20 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.daySegmentedControl.addTarget(self, action: Selector("handleSegment:"), forControlEvents: UIControlEvents.ValueChanged)
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.tintColor = UIColor.redColor()
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.eventTableView.addSubview(refreshControl)
+        
+        
+        
+        indicator.color = UIColor.redColor()
+        indicator.frame = CGRectMake(0.0, 0.0, 36.0, 36.0)
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.bringSubviewToFront(self.view)
+        indicator.startAnimating()
+        
     }
     
     func refresh(sender:AnyObject)
@@ -75,6 +89,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func didReceiveAPIResults(results: NSDictionary) {
         self.refreshControl.endRefreshing()
+        indicator.stopAnimating()
         
         let days: NSArray = results["days"] as! NSArray
         

@@ -21,6 +21,8 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     var resultSearchController = UISearchController()
     var refreshControl:UIRefreshControl!
     
+    let indicator:UIActivityIndicatorView = UIActivityIndicatorView  (activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,7 +31,8 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.api!.getMakers()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.tintColor = UIColor.redColor()
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.makerTableView.addSubview(refreshControl)
         
@@ -44,6 +47,14 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             return controller
         })()
+        
+        indicator.color = UIColor.redColor()
+        indicator.frame = CGRectMake(0.0, 0.0, 36.0, 36.0)
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.bringSubviewToFront(self.view)
+        indicator.startAnimating()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,6 +118,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func didReceiveAPIResults(results: NSDictionary) {
         self.refreshControl.endRefreshing()
+        indicator.stopAnimating()
         var newProjects: [Project] = []
         
         let allResults: [NSDictionary] = results["accepteds"] as! [NSDictionary]
