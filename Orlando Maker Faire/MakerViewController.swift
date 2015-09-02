@@ -8,18 +8,18 @@
 
 import UIKit
 
-class MakerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MakerAPIProtocol, UISearchBarDelegate {
+class MakerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MakerAPIProtocol, UISearchBarDelegate, UISearchResultsUpdating {
 
     let kCellIdentifier: String = "MakerCell"
-    
-    var refreshControl:UIRefreshControl!
-    var api: MakerAPI?
+
     
     @IBOutlet var makerTableView : UITableView!
     
+    var api: MakerAPI?
     var projects: [Project] = []
-    
     var searchResults: [Project] = []
+    var resultSearchController = UISearchController()
+    var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,18 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.makerTableView.addSubview(refreshControl)
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            
+            self.makerTableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,20 +56,45 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.api!.getMakers()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projects.count
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        searchResults.removeAll(keepCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "project_name CONTAINS[c] %@", searchController.searchBar.text)
+        let array = (projects as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        searchResults = array as! [Project]
+        
+        self.makerTableView.reloadData()
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (self.resultSearchController.active) {
+            return self.searchResults.count
+        }
+        else {
+            return self.projects.count
+        }
+    }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
     
-        
-        let maker = self.projects[indexPath.row]
-        cell.textLabel!.text = maker.project_name
-        cell.detailTextLabel!.text = maker.location
-        
-        return cell
+        if (self.resultSearchController.active) {
+            let maker = self.searchResults[indexPath.row]
+            cell.textLabel!.text = maker.project_name
+            cell.detailTextLabel!.text = maker.location
+            
+            return cell
+        }
+        else {
+            let maker = self.projects[indexPath.row]
+            cell.textLabel!.text = maker.project_name
+            cell.detailTextLabel!.text = maker.location
+            
+            return cell
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -65,7 +102,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         var makerIndex = makerTableView.indexPathForSelectedRow()!.row
         var selectedProject = self.projects[makerIndex]
         detailViewController.project = selectedProject
-        
+        resultSearchController.active = false
     }
     
     func didReceiveAPIResults(results: NSDictionary) {

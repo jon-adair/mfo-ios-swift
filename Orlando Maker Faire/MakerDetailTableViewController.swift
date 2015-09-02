@@ -46,11 +46,11 @@ class MakerDetailTableViewController : UITableViewController {
         projectName.text = self.project?.project_name
         projectLocation.text = self.project?.location
         print(self.project?.location)
-        projectDescription.text = self.project?.description
+        projectDescription.text = self.project?.project_description
         
         // maker
         makerName.text = self.project?.maker?.name
-        makerDescription.text = self.project?.maker?.description
+        makerDescription.text = self.project?.maker?.maker_description
         
     }
     

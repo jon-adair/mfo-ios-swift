@@ -63,7 +63,7 @@ class EventDetailTableViewController : UITableViewController {
         
         eventCost.text = event?.cost
         eventDuration.text = event?.duration
-        eventDescription.text = event?.description
+        eventDescription.text = event?.event_description
         //eventAdditionalInfo.text = event?.additional_info
         
         var modifiedFont = NSString(format:"<span style=\"font-family: HelveticaNeue-Light; font-size: 17\">%@</span>", (event?.additional_info ?? "")) as String
