@@ -19,6 +19,9 @@
 		1154A6AB19480266004E8CD0 /* Maker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A6AA19480266004E8CD0 /* Maker.swift */; };
 		11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A7706D1949939700C7F7E8 /* Main.storyboard */; };
 		11A77071194AB3B500C7F7E8 /* MakerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77070194AB3B500C7F7E8 /* MakerAPI.swift */; };
+		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
+		4620291C1DAF082200484334 /* MF-2016-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4620291B1DAF082200484334 /* MF-2016-button.png */; };
+		4620291E1DAF249100484334 /* site_plan_graphic_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4620291D1DAF249100484334 /* site_plan_graphic_v1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		1154A6AA19480266004E8CD0 /* Maker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maker.swift; sourceTree = "<group>"; };
 		11A7706E1949939700C7F7E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11A77070194AB3B500C7F7E8 /* MakerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerAPI.swift; sourceTree = "<group>"; };
+		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MF-2016-button.png"; path = "Orlando Maker Faire/MF-2016-button.png"; sourceTree = "<group>"; };
+		4620291D1DAF249100484334 /* site_plan_graphic_v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = site_plan_graphic_v1.png; path = ../Downloads/site_plan_graphic_v1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,8 @@
 		110345A41945759200F5C99F = {
 			isa = PBXGroup;
 			children = (
+				4620291D1DAF249100484334 /* site_plan_graphic_v1.png */,
+				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				110345AF1945759200F5C99F /* Maker Faire Orlando */,
 				110345C41945759200F5C99F /* Orlando Maker FaireTests */,
 				110345AE1945759200F5C99F /* Products */,
@@ -80,6 +88,7 @@
 				113C561E1946A4AC00CAFC27 /* MakerViewController.swift */,
 				1154A6A81948019F004E8CD0 /* MakerDetailViewController.swift */,
 				11A7706D1949939700C7F7E8 /* Main.storyboard */,
+				462029191DAF05FE00484334 /* Launch.storyboard */,
 				110345BB1945759200F5C99F /* Images.xcassets */,
 				110345B01945759200F5C99F /* Supporting Files */,
 			);
@@ -156,11 +165,13 @@
 		110345A51945759200F5C99F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Conner Brooks";
 				TargetAttributes = {
 					110345AC1945759200F5C99F = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = VU8HEYFGP5;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -188,7 +199,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				110345BC1945759200F5C99F /* Images.xcassets in Resources */,
+				4620291E1DAF249100484334 /* site_plan_graphic_v1.png in Resources */,
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
+				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
+				4620291C1DAF082200484334 /* MF-2016-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,15 +253,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -282,8 +300,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -291,6 +311,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -300,6 +321,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -309,11 +331,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dana Brooks (63MRE2SWEG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ann Adair (TESJUKRAYU)";
+				DEVELOPMENT_TEAM = VU8HEYFGP5;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkamingo.xMaker-Faire-Orlando";
 				PRODUCT_NAME = "Maker Faire Orlando";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -321,11 +347,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dana Brooks (63MRE2SWEG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ann Adair (TESJUKRAYU)";
+				DEVELOPMENT_TEAM = VU8HEYFGP5;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkamingo.xMaker-Faire-Orlando";
 				PRODUCT_NAME = "Maker Faire Orlando";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

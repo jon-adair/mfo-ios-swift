@@ -22,13 +22,13 @@ class EventDetailViewController : UIViewController {
     
     var event : Event?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(event?.description)
+        print(event?.description)
         self.title = event?.name
         
         eventTitle.text = event?.name

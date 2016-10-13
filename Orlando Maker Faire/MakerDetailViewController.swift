@@ -18,7 +18,7 @@ class MakerDetailViewController : UIViewController {
     
     var maker:Maker?
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MakerAPIProtocol {
-    func didReceiveAPIResults(results: NSDictionary)
+    func didReceiveAPIResults(_ results: NSDictionary)
 }
 
 class MakerAPI {
@@ -21,26 +21,30 @@ class MakerAPI {
     }
     
     func getMakers() {
-        let urlPath = "http://callformakers.org/orlando2014/default/overviewALL.json/raw"
-        let url: NSURL = NSURL(string: urlPath)!
-        let request: NSURLRequest = NSURLRequest(URL: url)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-            if error != nil {
-                println("ERROR: \(error.localizedDescription)")
-            }
-            else {
-                var error: NSError?
-                let jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
-                // Now send the JSON result to our delegate object
-                if (error != nil) {
-                    println("HTTP Error: \(error?.localizedDescription)")
-                }
-                else {
-                    println("Results recieved")
+        let urlPath = "http://www.makerfaireorlando.com/makers-json/"
+        let url: URL = URL(string: urlPath)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                //print("Everyone is fine, file downloaded successfully.")
+                //print(data)
+                do {
+                    let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                    print("Results recieved")
+                    // Now send the JSON result to our delegate object
                     self.delegate?.didReceiveAPIResults(jsonResult)
+                } catch let error as NSError {
+                    print("HTTP Error: \(error.localizedDescription)")
                 }
             }
-        })
+        }
+        
+        task.resume()
     }
 }

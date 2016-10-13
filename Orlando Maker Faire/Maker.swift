@@ -32,11 +32,21 @@ class Maker {
         self.photo_link = photo_link
     }
     
+    
     init(project_name:String!, maker_description:String!, web_site:String!, organization:String!, project_short_summary:String!) {
         self.project_name = project_name
         self.maker_description = maker_description
         self.web_site = web_site
         self.organization = organization
         self.project_short_summary = project_short_summary
+    }
+    
+    init(project_name:String!, maker_description:String!, web_site:String!, organization:String!, project_short_summary:String!, photo_link:String!) {
+        self.project_name = project_name
+        self.maker_description = maker_description
+        self.web_site = web_site
+        self.organization = organization
+        self.project_short_summary = project_short_summary
+        self.photo_link = photo_link
     }
 }

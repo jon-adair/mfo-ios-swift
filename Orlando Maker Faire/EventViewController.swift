@@ -16,6 +16,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var api: EventAPI?
     
     @IBOutlet var eventTableView : UITableView!
+    var activityIndicator: UIActivityIndicatorView!
+    
     
     
     var events: [[Event]] = [[]]
@@ -24,9 +26,29 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.api = EventAPI(delegate: self)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.api?.getEvents()
-        self.daySegmentedControl.addTarget(self, action: Selector("handleSegment:"), forControlEvents: UIControlEvents.ValueChanged)
+        self.daySegmentedControl.addTarget(self, action: #selector(EventViewController.handleSegment(_:)), for: UIControlEvents.valueChanged)
+        
+        // If we're on day 2 of the event, default the view to day 2 (segment 1)
+        // Kind of cheesy to do it this way.
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let convertedDate = dateFormatter.string(from: currentDate)
+        print(convertedDate)
+        if convertedDate == "10/23/2016" {
+            self.daySegmentedControl.selectedSegmentIndex = 1
+        }
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x:50, y:10, width:50, height:50)) as UIActivityIndicatorView
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.startAnimating();
+        self.view.addSubview(activityIndicator)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,31 +56,34 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.events.count == 1 && self.events[0].count == 0 {
+            return 0
+        }
         return self.events[daySegmentedControl.selectedSegmentIndex].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
+        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier)
         
         
-        let event = self.events[daySegmentedControl.selectedSegmentIndex][indexPath.row]
+        let event = self.events[daySegmentedControl.selectedSegmentIndex][(indexPath as NSIndexPath).row]
         cell.textLabel!.text = event.name
         cell.detailTextLabel!.text = event.location
         
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var detailViewController: EventDetailViewController = segue.destinationViewController as! EventDetailViewController
-        var eventIndex = eventTableView.indexPathForSelectedRow()!.row
-        var selectedEvent = self.events[daySegmentedControl.selectedSegmentIndex][eventIndex]
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        let detailViewController: EventDetailViewController = segue.destination as! EventDetailViewController
+        let eventIndex = eventTableView.indexPathForSelectedRow!.row
+        let selectedEvent = self.events[daySegmentedControl.selectedSegmentIndex][eventIndex]
         detailViewController.event = selectedEvent
         
     }
     
-    func didReceiveAPIResults(results: NSDictionary) {
+    func didReceiveAPIResults(_ results: NSDictionary) {
         let days: NSArray = results["days"] as! NSArray
         self.events.append([Event]())
         let count = days.count - 1
@@ -66,7 +91,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             let day: NSDictionary = days[dayCounter] as! NSDictionary
             let date_title = day["date_title"] as! NSString
             // daySegmentedControl.setTitle(day["date_title"] as! String!, forSegmentAtIndex: 0)
-            println("date_title = \(date_title)")
+            print("date_title = \(date_title)")
             let ev: [NSDictionary] = day["events"] as! [NSDictionary]
             for e in ev {
                 //let name = e["name"] as! NSString
@@ -97,7 +122,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
                 var newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
-                println(newEvent)
+                print(newEvent)
                 
                 self.events[dayCounter].append(newEvent)
             }
@@ -132,12 +157,16 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            self.events.append(newEvent)
 //        }
 //       
-        self.eventTableView.reloadData()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        // Need to do this back on the main thread because this gets called by an asynch background thread
+        DispatchQueue.main.async{
+            self.activityIndicator.removeFromSuperview()
+            self.eventTableView.reloadData()
+        }
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
-    func handleSegment(daySegment: UISegmentedControl) {
-        println("sel = \(daySegment.selectedSegmentIndex)")
+    func handleSegment(_ daySegment: UISegmentedControl) {
+        print("sel = \(daySegment.selectedSegmentIndex)")
         self.eventTableView.reloadData()
     }
 }
