@@ -8,7 +8,9 @@ Now updated for Xcode 8 and Swift 3
 ## Todo
 
 [ ] Would be great if the event data pre-loaded before the view appeared
+
 [ ] The maker list should include the exhibit picture in list and detail
+
 [ ] The JSON (and pictures) really should be cached
 
 
