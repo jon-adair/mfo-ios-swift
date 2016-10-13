@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# quickie script to generate the different size icons
+# depends on ImageMagick
 
 convert icon-1024.jpg icon-1024.png
 
@@ -41,6 +43,6 @@ convert icon-1024.png -resize 167x167 -gravity center -extent 167x167 icon-83.5x
 
 
 
-cp icon*{1x,2x,3x}*.png "../storydice3d/Assets.xcassets/AppIcon.appiconset/"
+cp icon*{1x,2x,3x}*.png "../Orlando Maker Faire/Images.xcassets/AppIcon.appiconset/"
 
 
