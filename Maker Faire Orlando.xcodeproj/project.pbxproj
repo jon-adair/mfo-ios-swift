@@ -21,7 +21,8 @@
 		11A77071194AB3B500C7F7E8 /* MakerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77070194AB3B500C7F7E8 /* MakerAPI.swift */; };
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
 		4620291C1DAF082200484334 /* MF-2016-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4620291B1DAF082200484334 /* MF-2016-button.png */; };
-		4620291E1DAF249100484334 /* site_plan_graphic_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4620291D1DAF249100484334 /* site_plan_graphic_v1.png */; };
+		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
+		46394D031DB09BF50038538F /* site_plan_graphic_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D011DB09BF50038538F /* site_plan_graphic_v1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +43,9 @@
 		11A7706E1949939700C7F7E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11A77070194AB3B500C7F7E8 /* MakerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerAPI.swift; sourceTree = "<group>"; };
 		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MF-2016-button.png"; path = "Orlando Maker Faire/MF-2016-button.png"; sourceTree = "<group>"; };
-		4620291D1DAF249100484334 /* site_plan_graphic_v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = site_plan_graphic_v1.png; path = ../Downloads/site_plan_graphic_v1.png; sourceTree = "<group>"; };
+		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2016-button.png"; sourceTree = "<group>"; };
+		46394D001DB09BF50038538F /* makey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makey.png; sourceTree = "<group>"; };
+		46394D011DB09BF50038538F /* site_plan_graphic_v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = site_plan_graphic_v1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,6 @@
 		110345A41945759200F5C99F = {
 			isa = PBXGroup;
 			children = (
-				4620291D1DAF249100484334 /* site_plan_graphic_v1.png */,
-				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				110345AF1945759200F5C99F /* Maker Faire Orlando */,
 				110345C41945759200F5C99F /* Orlando Maker FaireTests */,
 				110345AE1945759200F5C99F /* Products */,
@@ -79,6 +79,9 @@
 		110345AF1945759200F5C99F /* Maker Faire Orlando */ = {
 			isa = PBXGroup;
 			children = (
+				46394D001DB09BF50038538F /* makey.png */,
+				46394D011DB09BF50038538F /* site_plan_graphic_v1.png */,
+				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
 				110345B21945759200F5C99F /* AppDelegate.swift */,
@@ -170,8 +173,9 @@
 				TargetAttributes = {
 					110345AC1945759200F5C99F = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = VU8HEYFGP5;
+						DevelopmentTeam = PW5CL64ZT8;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -199,8 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				110345BC1945759200F5C99F /* Images.xcassets in Resources */,
-				4620291E1DAF249100484334 /* site_plan_graphic_v1.png in Resources */,
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
+				46394D021DB09BF50038538F /* makey.png in Resources */,
+				46394D031DB09BF50038538F /* site_plan_graphic_v1.png in Resources */,
 				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
 				4620291C1DAF082200484334 /* MF-2016-button.png in Resources */,
 			);
@@ -331,14 +336,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ann Adair (TESJUKRAYU)";
-				DEVELOPMENT_TEAM = VU8HEYFGP5;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkamingo.xMaker-Faire-Orlando";
+				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -347,14 +353,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ann Adair (TESJUKRAYU)";
-				DEVELOPMENT_TEAM = VU8HEYFGP5;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkamingo.xMaker-Faire-Orlando";
+				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
