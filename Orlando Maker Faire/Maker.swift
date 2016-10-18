@@ -30,6 +30,7 @@ class Maker {
         self.location = location
         self.organization = organization
         self.photo_link = photo_link
+        self.location = location
     }
     
     
@@ -41,12 +42,13 @@ class Maker {
         self.project_short_summary = project_short_summary
     }
     
-    init(project_name:String!, maker_description:String!, web_site:String!, organization:String!, project_short_summary:String!, photo_link:String!) {
+    init(project_name:String!, maker_description:String!, web_site:String!, organization:String!, project_short_summary:String!, photo_link:String!, location:String! ) {
         self.project_name = project_name
         self.maker_description = maker_description
         self.web_site = web_site
         self.organization = organization
         self.project_short_summary = project_short_summary
         self.photo_link = photo_link
+        self.location = location
     }
 }

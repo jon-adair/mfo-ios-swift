@@ -24,7 +24,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.api = EventAPI(delegate: self)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.api?.getEvents()
@@ -94,69 +93,22 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             print("date_title = \(date_title)")
             let ev: [NSDictionary] = day["events"] as! [NSDictionary]
             for e in ev {
-                //let name = e["name"] as! NSString
-                //println("name = \(name)")
                 
-                var name: String? = e["name"] as? String
-                var image_large: String? = e["image_large"] as? String
-                var description: String? = e["description"] as? String
-                var date: String? = e["date"] as? String
-                var start_time: String? = e["start_time"] as? String
-                var end_time: String? = e["end_time"] as? String
-                var duration: String? = e["duration"] as? String
-                var cost: String? = e["cost"] as? String
-                var additional_info: String? = e["additional_info"] as? String
-                var location: String? = e["location"] as? String
-                /*
-                var link: String? = e["promo_url"] as? String
-                
-                var startString : String = "1/1/90" // startDict["dateTime"] as! String
-                var endString : String = "1/2/91" // endDict["dateTime"] as! String
-                
-                var formatter: NSDateFormatter = NSDateFormatter()
-                formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'-'HH':'mm'"
-                
-                var start: NSDate = NSDate.new()
-                var end: NSDate = NSDate.new()
-*/
-                
-                //var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
-                var newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
-                print(newEvent)
-                
+                let name: String? = e["name"] as? String
+                let image_large: String? = e["image_large"] as? String
+                let description: String? = e["description"] as? String
+                let date: String? = e["date"] as? String
+                let start_time: String? = e["start_time"] as? String
+                let end_time: String? = e["end_time"] as? String
+                let duration: String? = e["duration"] as? String
+                let cost: String? = e["cost"] as? String
+                let additional_info: String? = e["additional_info"] as? String
+                let location: String? = e["location"] as? String
+                let newEvent = Event(name: name, image_large: image_large, description: description, date: date, start_time: start_time, end_time: end_time, duration: duration, cost: cost, additional_info: additional_info, location: location)
                 self.events[dayCounter].append(newEvent)
             }
         }
         
-//        let allResults: [NSDictionary] = results["items"] as! [NSDictionary]
-//        for result:NSDictionary in allResults {
-//            
-//            var location: String? = result["location"] as? String
-//            var link: String? = result["htmllink"] as? String
-//            var event_description: String? = result["description"] as? String
-//            var summary: String? = result["summary"] as? String
-//            
-//            
-//            var formatter: NSDateFormatter = NSDateFormatter()
-//            formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'-'HH':'mm'"
-//            var startDict : NSDictionary = result["start"] as! NSDictionary
-//            var endDict : NSDictionary = result["end"] as! NSDictionary
-//            
-//            var startString : String = startDict["dateTime"] as! String
-//            var endString : String = endDict["dateTime"] as! String
-//            
-//            println(startString)
-//            
-//            var start: NSDate = formatter.dateFromString(startString)!
-//            var end: NSDate = formatter.dateFromString(endString)!
-//            println(start)
-//            
-//            
-//            var newEvent = Event(summary: summary, event_description: event_description, location: location, link: link, start: start, end: end)
-//            
-//            self.events.append(newEvent)
-//        }
-//       
         // Need to do this back on the main thread because this gets called by an asynch background thread
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()

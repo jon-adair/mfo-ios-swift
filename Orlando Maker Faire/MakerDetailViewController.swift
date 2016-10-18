@@ -12,9 +12,9 @@ import UIKit
 class MakerDetailViewController : UIViewController {
     
     @IBOutlet var makerTitle : UILabel!
-    @IBOutlet var makerWebSite : UILabel!
-    @IBOutlet var makerOranization : UILabel!
-    @IBOutlet var makerDescription : UITextView!
+    @IBOutlet var makerDescription : UILabel!
+    @IBOutlet var makerPhoto : UIImageView!
+    @IBOutlet var makerLocation: UILabel!
     
     var maker:Maker?
     
@@ -24,12 +24,25 @@ class MakerDetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = self.maker?.project_name
+        self.title = self.maker?.project_name
         
         makerTitle.text = self.maker?.project_name
         makerDescription.text = self.maker?.maker_description
-        makerWebSite.text = self.maker?.web_site
-        makerOranization.text = self.maker?.organization
+        makerLocation.text = self.maker?.location
+        
+        if ( maker?.photo_link != nil ) {
+            
+            let url = URL(string: (self.maker?.photo_link!)!)
+            let data = try? Data(contentsOf: url!)
+            if ( data != nil ) {
+                self.makerPhoto.image = UIImage(data: data!)
+            } else {
+                makerPhoto.image = UIImage(named: "makey")
+            }
+        } else {
+            makerPhoto.image = UIImage(named: "makey")
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

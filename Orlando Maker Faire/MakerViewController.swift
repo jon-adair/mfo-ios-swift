@@ -58,16 +58,25 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.textLabel!.text = maker.project_name
         cell.detailTextLabel!.text = maker.organization
 
-        /* TODO: Too slow without caching
-        if ( maker.photo_link != nil ) {
+        /*
+        var cellImg : UIImageView = UIImageView(frame: CGRect(x:0.0,y:0.0,width:40.0,height:40.0))
         
-        let url = URL(string: maker.photo_link!)
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        cell.imageView?.image = UIImage(data: data!)
+        // TODO: Too slow without caching
+        if ( maker.photo_link != nil ) {
+            let url = URL(string: maker.photo_link!)
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cellImg.image = UIImage(data: data!)
+            //cell.imageView?.image = UIImage(data: data!)
         } else {
-            cell.imageView?.image = UIImage(named: "MF-2016-button")
+            cellImg.image = UIImage(named: "makey")
+            //cell.imageView?.image = UIImage(named: "makey")
         }
-        */
+        cellImg.image = UIImage(named: "yourimage.png")
+        cell.addSubview(cellImg)
+        //cell.imageView?.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
+        //cell.contentMode = UIViewContentMode.scaleAspectFit
+        //cell.clipsToBounds = true
+         */
         
         return cell
     }
@@ -91,14 +100,14 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
             let organization: String? = result["organization"] as? String
             let project_short_summary: String? = result["project_short_summary"] as? String
             let photo_link: String? = result["photo_link"] as? String
+            let location: String? = result["location"] as? String
             
             //var promo_url: String? = result["promo_url"] as? String
             //var qrcode_url: String? = result["qrcode_url"] as? String
-            //var location: String? = result["location"] as? String
             //var category: String? = result["category"] as? String
             //var photo_link: String? = result["photo_link"] as? String
             
-            let newMaker = Maker(project_name: project_name, maker_description: maker_description, web_site: web_site, organization: organization, project_short_summary: project_short_summary, photo_link: photo_link)
+            let newMaker = Maker(project_name: project_name, maker_description: maker_description, web_site: web_site, organization: organization, project_short_summary: project_short_summary, photo_link: photo_link, location: location)
             
             self.makers.append(newMaker)
         }
