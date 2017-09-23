@@ -20,8 +20,8 @@
 		11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A7706D1949939700C7F7E8 /* Main.storyboard */; };
 		11A77071194AB3B500C7F7E8 /* MakerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77070194AB3B500C7F7E8 /* MakerAPI.swift */; };
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
-		4620291C1DAF082200484334 /* MF-2016-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4620291B1DAF082200484334 /* MF-2016-button.png */; };
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
+		465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 465D84D91F75FC74006B332F /* MF-2017-button.png */; };
 		46D427491DB56EC5007AD5CE /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D427481DB56EC5007AD5CE /* map.png */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +45,7 @@
 		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2016-button.png"; sourceTree = "<group>"; };
 		46394D001DB09BF50038538F /* makey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makey.png; sourceTree = "<group>"; };
+		465D84D91F75FC74006B332F /* MF-2017-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2017-button.png"; sourceTree = "<group>"; };
 		46D427481DB56EC5007AD5CE /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +83,7 @@
 				46D427481DB56EC5007AD5CE /* map.png */,
 				46394D001DB09BF50038538F /* makey.png */,
 				4620291B1DAF082200484334 /* MF-2016-button.png */,
+				465D84D91F75FC74006B332F /* MF-2017-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
 				110345B21945759200F5C99F /* AppDelegate.swift */,
@@ -204,10 +206,10 @@
 			files = (
 				46D427491DB56EC5007AD5CE /* map.png in Resources */,
 				110345BC1945759200F5C99F /* Images.xcassets in Resources */,
+				465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */,
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
 				46394D021DB09BF50038538F /* makey.png in Resources */,
 				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
-				4620291C1DAF082200484334 /* MF-2016-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

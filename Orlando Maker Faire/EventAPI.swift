@@ -24,7 +24,7 @@ class EventAPI {
     }
     
     func getEvents() {
-        let urlPath = "http://www.makerfaireorlando.com/events-json"
+        let urlPath = "https://www.makerfaireorlando.com/events-json"
         let url: URL = URL(string: urlPath)!
 
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)

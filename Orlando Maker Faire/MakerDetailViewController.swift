@@ -30,6 +30,10 @@ class MakerDetailViewController : UIViewController {
         makerDescription.text = self.maker?.maker_description
         makerLocation.text = self.maker?.location
         
+        if self.maker?.location == "Unassigned" {
+            makerLocation.text = ""
+        }
+        
         if ( maker?.photo_link != nil ) {
             
             let url = URL(string: (self.maker?.photo_link!)!)

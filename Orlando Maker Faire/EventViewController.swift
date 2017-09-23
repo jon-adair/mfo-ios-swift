@@ -37,7 +37,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let convertedDate = dateFormatter.string(from: currentDate)
         print(convertedDate)
-        if convertedDate == "10/23/2016" {
+        if convertedDate == "10/22/2017" {
             self.daySegmentedControl.selectedSegmentIndex = 1
         }
         
