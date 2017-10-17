@@ -33,7 +33,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     
     func doubleTapped() {
         if scrollView.zoomScale == scrollView.minimumZoomScale {
-            scrollView.zoomScale = scrollView.zoomScale * 2
+            scrollView.zoomScale = scrollView.zoomScale * 3
         } else {
             scrollView.zoomScale = scrollView.minimumZoomScale
         }

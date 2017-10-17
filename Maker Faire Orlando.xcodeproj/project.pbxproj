@@ -22,7 +22,6 @@
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
 		465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 465D84D91F75FC74006B332F /* MF-2017-button.png */; };
-		46D427491DB56EC5007AD5CE /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D427481DB56EC5007AD5CE /* map.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,7 +203,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D427491DB56EC5007AD5CE /* map.png in Resources */,
 				110345BC1945759200F5C99F /* Images.xcassets in Resources */,
 				465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */,
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
