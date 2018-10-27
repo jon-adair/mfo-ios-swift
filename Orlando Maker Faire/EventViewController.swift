@@ -27,7 +27,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.api = EventAPI(delegate: self)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.api?.getEvents()
-        self.daySegmentedControl.addTarget(self, action: #selector(EventViewController.handleSegment(_:)), for: UIControlEvents.valueChanged)
+        self.daySegmentedControl.addTarget(self, action: #selector(EventViewController.handleSegment(_:)), for: UIControl.Event.valueChanged)
         
         // If we're on day 2 of the event, default the view to day 2 (segment 1)
         // Kind of cheesy to do it this way.
@@ -37,14 +37,14 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let convertedDate = dateFormatter.string(from: currentDate)
         print(convertedDate)
-        if convertedDate == "10/22/2017" {
+        if convertedDate == "11/11/2018" {
             self.daySegmentedControl.selectedSegmentIndex = 1
         }
         
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x:50, y:10, width:50, height:50)) as UIActivityIndicatorView
         activityIndicator.center = self.view.center;
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.startAnimating();
         self.view.addSubview(activityIndicator)
 
@@ -117,7 +117,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
-    func handleSegment(_ daySegment: UISegmentedControl) {
+    @objc func handleSegment(_ daySegment: UISegmentedControl) {
         print("sel = \(daySegment.selectedSegmentIndex)")
         self.eventTableView.reloadData()
     }

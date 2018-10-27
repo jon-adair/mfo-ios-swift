@@ -10,7 +10,6 @@
 		110345B31945759200F5C99F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110345B21945759200F5C99F /* AppDelegate.swift */; };
 		110345B51945759200F5C99F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110345B41945759200F5C99F /* MapViewController.swift */; };
 		110345B71945759200F5C99F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110345B61945759200F5C99F /* EventViewController.swift */; };
-		110345BC1945759200F5C99F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110345BB1945759200F5C99F /* Images.xcassets */; };
 		1111F848194AC8D900505F3C /* EventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111F847194AC8D900505F3C /* EventAPI.swift */; };
 		1111F84B194ACF2700505F3C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111F84A194ACF2700505F3C /* Event.swift */; };
 		11160271197220BE005B98DD /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11160270197220BE005B98DD /* EventDetailViewController.swift */; };
@@ -21,7 +20,10 @@
 		11A77071194AB3B500C7F7E8 /* MakerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77070194AB3B500C7F7E8 /* MakerAPI.swift */; };
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
-		465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 465D84D91F75FC74006B332F /* MF-2017-button.png */; };
+		465148F82155B796009650D7 /* makers.json in Resources */ = {isa = PBXBuildFile; fileRef = 465148F72155B796009650D7 /* makers.json */; };
+		46C82302217BBF3A0031CBF1 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D427481DB56EC5007AD5CE /* map.png */; };
+		46C82304217BC0940031CBF1 /* MF-2018-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 46C82303217BC0940031CBF1 /* MF-2018-button.png */; };
+		46C82305217BC1690031CBF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110345BB1945759200F5C99F /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +46,9 @@
 		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2016-button.png"; sourceTree = "<group>"; };
 		46394D001DB09BF50038538F /* makey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makey.png; sourceTree = "<group>"; };
+		465148F72155B796009650D7 /* makers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = makers.json; path = ../../Downloads/mfo/makers.json; sourceTree = "<group>"; };
 		465D84D91F75FC74006B332F /* MF-2017-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2017-button.png"; sourceTree = "<group>"; };
+		46C82303217BC0940031CBF1 /* MF-2018-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MF-2018-button.png"; path = "../../Downloads/MF-2018-button.png"; sourceTree = "<group>"; };
 		46D427481DB56EC5007AD5CE /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,10 +83,12 @@
 		110345AF1945759200F5C99F /* Maker Faire Orlando */ = {
 			isa = PBXGroup;
 			children = (
+				465148F72155B796009650D7 /* makers.json */,
 				46D427481DB56EC5007AD5CE /* map.png */,
 				46394D001DB09BF50038538F /* makey.png */,
 				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				465D84D91F75FC74006B332F /* MF-2017-button.png */,
+				46C82303217BC0940031CBF1 /* MF-2018-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
 				110345B21945759200F5C99F /* AppDelegate.swift */,
@@ -169,13 +175,13 @@
 		110345A51945759200F5C99F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Conner Brooks";
 				TargetAttributes = {
 					110345AC1945759200F5C99F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = PW5CL64ZT8;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -203,9 +209,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				110345BC1945759200F5C99F /* Images.xcassets in Resources */,
-				465D84DA1F75FD3E006B332F /* MF-2017-button.png in Resources */,
+				465148F82155B796009650D7 /* makers.json in Resources */,
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
+				46C82305217BC1690031CBF1 /* Images.xcassets in Resources */,
+				46C82302217BBF3A0031CBF1 /* map.png in Resources */,
+				46C82304217BC0940031CBF1 /* MF-2018-button.png in Resources */,
 				46394D021DB09BF50038538F /* makey.png in Resources */,
 				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
 			);
@@ -253,14 +261,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -300,14 +316,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -345,7 +369,8 @@
 				PRODUCT_NAME = "Maker Faire Orlando";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -362,7 +387,8 @@
 				PRODUCT_NAME = "Maker Faire Orlando";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

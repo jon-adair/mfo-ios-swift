@@ -32,7 +32,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x:50, y:10, width:50, height:50)) as UIActivityIndicatorView
         activityIndicator.center = self.view.center;
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.startAnimating();
         self.view.addSubview(activityIndicator)
 

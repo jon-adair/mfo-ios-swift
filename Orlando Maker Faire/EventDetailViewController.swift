@@ -26,7 +26,7 @@ class EventDetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(event?.description)
+        //print(event?.description)
         self.title = event?.name
         
         eventTitle.text = event?.name

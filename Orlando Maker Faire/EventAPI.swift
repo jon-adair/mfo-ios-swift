@@ -36,6 +36,7 @@ class EventAPI {
             let statusCode = httpResponse.statusCode
             
             if (statusCode == 200) {
+                print("Got data")
                 //print("Everyone is fine, file downloaded successfully.")
                 //print(data)
                 do {

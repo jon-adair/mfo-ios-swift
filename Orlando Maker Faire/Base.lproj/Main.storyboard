@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Medium</string>
-        </array>
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Events-->
         <scene sceneID="UWF-sq-yjt">
@@ -28,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lRP-SS-ZWQ">
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="lRP-SS-ZWQ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
@@ -38,8 +27,8 @@
                                         <rect key="frame" x="67.5" y="7" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="October 21"/>
-                                            <segment title="October 22"/>
+                                            <segment title="November 10"/>
+                                            <segment title="November 11"/>
                                         </segments>
                                     </segmentedControl>
                                 </barButtonItem>
@@ -207,6 +196,7 @@
                 <navigationController id="k0c-wc-fWO" userLabel="Map" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="PyA-aS-R4v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uBt-JK-MqM">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -237,8 +227,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" minimumZoomScale="0.10000000000000001" maximumZoomScale="10" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeY-4u-DpP">
                                 <rect key="frame" x="6" y="64" width="363" height="554"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="omf-map" translatesAutoresizingMaskIntoConstraints="NO" id="M7z-8Q-Jo7" userLabel="map image">
-                                        <rect key="frame" x="0.0" y="0.0" width="1242" height="810"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map.png" translatesAutoresizingMaskIntoConstraints="NO" id="M7z-8Q-Jo7" userLabel="map image">
+                                        <rect key="frame" x="0.0" y="0.0" width="2550" height="1650"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -433,6 +423,7 @@
                 <navigationController id="X4L-Zg-OAR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Makers" image="Makers" id="2Oe-tb-g9k"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="NAM-n6-mYj">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -475,6 +466,7 @@
                     <tabBarItem key="tabBarItem" title="Events" image="Events" id="FD8-s4-1rD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fGv-Qv-8fB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -497,7 +489,7 @@
         <image name="Makers" width="17" height="27"/>
         <image name="Map" width="27" height="22"/>
         <image name="makey.png" width="620" height="465"/>
-        <image name="omf-map" width="1242" height="810"/>
+        <image name="map.png" width="2550" height="1650"/>
     </resources>
     <color key="tintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
