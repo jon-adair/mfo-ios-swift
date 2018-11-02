@@ -29,7 +29,7 @@ class MakerAPI {
             (data, response, error) -> Void in
             
             if (error != nil) {
-                print(error)
+                //print(error)
                 return
             }
             // WARNING: This dies when no connection is available
