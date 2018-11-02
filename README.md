@@ -1,9 +1,6 @@
 # Maker-Faire-Orlando-iOS
 
-
-iOS Application for the 2016 Maker Faire Orlando
-
-Now updated for Xcode 8 and Swift 3
+iOS Application for Maker Faire Orlando
 
 ## Todo
 
@@ -13,7 +10,7 @@ Now updated for Xcode 8 and Swift 3
 
 [ ] Pull-to-refresh
 
-[ ] The maker list should either have thumbnail images in cells or be changed to a collection view with images
+[ ] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
 
 [ ] The detail view layouts are a little rough and should collapse labels when they're empty
 
