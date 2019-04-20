@@ -113,8 +113,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()
             self.eventTableView.reloadData()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
     @objc func handleSegment(_ daySegment: UISegmentedControl) {

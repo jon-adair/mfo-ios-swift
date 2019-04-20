@@ -21,7 +21,7 @@ class MakerAPI {
     }
     
     func getMakers() {
-        let urlPath = "https://www.makerfaireorlando.com/makers-json/"
+        let urlPath = "https://www.makerfaireorlando.com/makers-json"
         let url: URL = URL(string: urlPath)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)
         let session = URLSession.shared
@@ -29,7 +29,7 @@ class MakerAPI {
             (data, response, error) -> Void in
             
             if (error != nil) {
-                //print(error)
+                print(error!)
                 return
             }
             // WARNING: This dies when no connection is available
@@ -37,11 +37,12 @@ class MakerAPI {
             let statusCode = httpResponse.statusCode
             
             if (statusCode == 200) {
+                print("Got maker data")
                 //print("Everyone is fine, file downloaded successfully.")
                 //print(data)
                 do {
                     let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                    print("Results recieved")
+                    print("Maker results recieved")
                     // Now send the JSON result to our delegate object
                     self.delegate?.didReceiveAPIResults(jsonResult)
                 } catch let error as NSError {

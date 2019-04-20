@@ -6,7 +6,9 @@ iOS Application for Maker Faire Orlando
 
 [ ] Would be great if the event data pre-loaded before the view appeared
 
-[ ] The JSON (and pictures) really should be cached
+[ ] The JSON (and pictures) really should be cached when retrieved
+
+[ ] Map should be cached
 
 [ ] Pull-to-refresh
 
@@ -16,9 +18,15 @@ iOS Application for Maker Faire Orlando
 
 [ ] The detail view layouts should handle images better - either resize imageview to match or crop images
 
+[x] Fix calling setNetworkActivityIndicator on background thread
+
+[ ] Event JSON 404s in simulator but not on actual device
+
+
+
 ## Copyright and license
 
-The copyright status and license is a little unclear.
+The copyright status and license of the code is a little unclear.
 
-The images (icon, map, launch screen badge, etc.) are definitely using licensed trademarks from Maker Media. 
+The images (icon, map, launch screen badge, etc.) are licensed trademarks from Maker Media. 
 

@@ -115,7 +115,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()
             self.makerTableView.reloadData()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
