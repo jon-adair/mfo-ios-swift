@@ -8,13 +8,54 @@
 
 import UIKit
 
-class MakerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MakerAPIProtocol, UISearchBarDelegate {
+class MyCell: UICollectionViewCell {
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var makerImage: UIImageView!
+}
+
+
+class MakerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, MakerAPIProtocol, UISearchBarDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Got count")
+        //return 5
+         return makers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCell
+        
+        let maker = self.makers[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = maker.project_name
+        
+        // TODO: Too slow without caching
+        if ( maker.photo_link != nil ) {
+            let url = URL(string: maker.photo_link!)
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.makerImage.image = UIImage(data: data!)
+            //cell.imageView?.image = UIImage(data: data!)
+        } else {
+            cell.makerImage.image = UIImage(named: "makey")
+            //cell.imageView?.image = UIImage(named: "makey")
+        }
+        
+        
+        //cell.textLabel?.text = String(indexPath.row + 1)
+        print("Got cell \(indexPath.row)")
+        //cell.backgroundColor = UIColor.red
+        return cell
+        
+    }
+    
 
     let kCellIdentifier: String = "MakerCell"
     
     var api: MakerAPI?
     
     @IBOutlet var makerTableView : UITableView!
+    
+    @IBOutlet weak var makerCollectionView: UICollectionView!
     
     var makers: [Maker] = []
     
@@ -24,6 +65,7 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     
     override func viewDidLoad() {
+        print("View did load")
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.api = MakerAPI(delegate: self)
@@ -35,6 +77,9 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.startAnimating();
         self.view.addSubview(activityIndicator)
+        
+        // Register cell classes
+       // self.makerCollectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
 
         
         self.api!.getMakers()
@@ -83,8 +128,14 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         let detailViewController: MakerDetailViewController = segue.destination as! MakerDetailViewController
-        let makerIndex = makerTableView.indexPathForSelectedRow!.row
-        let selectedMaker = self.makers[makerIndex]
+        //let makerIndex = makerTableView.indexPathForSelectedRow!.row
+        let selected = makerCollectionView.indexPathsForSelectedItems
+        print("Selected: \(selected?.count)")
+        
+        let makerIndex = selected?[0].row
+        
+
+        let selectedMaker = self.makers[makerIndex!]
         detailViewController.maker = selectedMaker
         
     }
@@ -114,7 +165,8 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Need to do this on the main thread because this gets called by an asynch background thread
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()
-            self.makerTableView.reloadData()
+            //self.makerTableView.reloadData()
+            self.makerCollectionView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
