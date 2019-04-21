@@ -84,11 +84,11 @@
 			isa = PBXGroup;
 			children = (
 				46A18C68226B41080089FA75 /* makers-json */,
-				46A18C66226B405F0089FA75 /* MF-2018-button.png */,
 				46D427481DB56EC5007AD5CE /* map.png */,
 				46394D001DB09BF50038538F /* makey.png */,
 				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				465D84D91F75FC74006B332F /* MF-2017-button.png */,
+				46A18C66226B405F0089FA75 /* MF-2018-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
 				110345B21945759200F5C99F /* AppDelegate.swift */,

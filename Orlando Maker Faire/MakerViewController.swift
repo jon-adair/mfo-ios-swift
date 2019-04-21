@@ -56,9 +56,9 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let maker = self.makers[(indexPath as NSIndexPath).row]
         cell.textLabel!.text = maker.project_name
-        cell.detailTextLabel!.text = maker.organization
+        //cell.detailTextLabel!.text = maker.organization
 
-        /*
+        
         var cellImg : UIImageView = UIImageView(frame: CGRect(x:0.0,y:0.0,width:40.0,height:40.0))
         
         // TODO: Too slow without caching
@@ -71,12 +71,12 @@ class MakerViewController: UIViewController, UITableViewDataSource, UITableViewD
             cellImg.image = UIImage(named: "makey")
             //cell.imageView?.image = UIImage(named: "makey")
         }
-        cellImg.image = UIImage(named: "yourimage.png")
+        //cellImg.image = UIImage(named: "yourimage.png")
         cell.addSubview(cellImg)
         //cell.imageView?.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
         //cell.contentMode = UIViewContentMode.scaleAspectFit
         //cell.clipsToBounds = true
-         */
+ 
         
         return cell
     }
