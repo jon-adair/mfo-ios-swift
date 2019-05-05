@@ -94,6 +94,8 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         return makers.count
     }
     
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier) 
@@ -104,7 +106,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         //cell.detailTextLabel!.text = maker.organization
 
         
-        var cellImg : UIImageView = UIImageView(frame: CGRect(x:0.0,y:0.0,width:40.0,height:40.0))
+        let cellImg : UIImageView = UIImageView(frame: CGRect(x:0.0,y:0.0,width:40.0,height:40.0))
         
         // TODO: Too slow without caching
         if ( maker.photo_link != nil ) {
@@ -130,7 +132,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         let detailViewController: MakerDetailViewController = segue.destination as! MakerDetailViewController
         //let makerIndex = makerTableView.indexPathForSelectedRow!.row
         let selected = makerCollectionView.indexPathsForSelectedItems
-        print("Selected: \(selected?.count)")
+        print("Selected: \(selected!.count)")
         
         let makerIndex = selected?[0].row
         

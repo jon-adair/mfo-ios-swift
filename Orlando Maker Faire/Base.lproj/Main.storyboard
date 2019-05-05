@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -83,10 +84,6 @@
         <scene sceneID="HX8-vb-Y3g">
             <objects>
                 <viewController storyboardIdentifier="EventDetailViewController" id="qtO-h2-drj" customClass="EventDetailViewController" customModule="Maker_Faire_Orlando" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nlD-ts-jgL"/>
-                        <viewControllerLayoutGuide type="bottom" id="8cc-dd-P5o"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9aZ-vM-4c6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,11 +169,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8cc-dd-P5o" firstAttribute="top" secondItem="jfn-Hx-axQ" secondAttribute="bottom" id="3KS-dp-czM"/>
+                            <constraint firstItem="XFr-dJ-Hnv" firstAttribute="bottom" secondItem="jfn-Hx-axQ" secondAttribute="bottom" id="3KS-dp-czM"/>
                             <constraint firstItem="jfn-Hx-axQ" firstAttribute="leading" secondItem="9aZ-vM-4c6" secondAttribute="leadingMargin" constant="-16" id="Bhh-ak-fIK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jfn-Hx-axQ" secondAttribute="trailing" constant="-16" id="qff-e4-pt4"/>
-                            <constraint firstItem="jfn-Hx-axQ" firstAttribute="top" secondItem="nlD-ts-jgL" secondAttribute="bottom" id="seP-VK-RWL"/>
+                            <constraint firstItem="jfn-Hx-axQ" firstAttribute="top" secondItem="XFr-dJ-Hnv" secondAttribute="top" id="seP-VK-RWL"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="XFr-dJ-Hnv"/>
                     </view>
                     <connections>
                         <outlet property="eventDescription" destination="1tA-K3-hyd" id="ZRs-Tv-0Oq"/>
@@ -216,10 +214,6 @@
         <scene sceneID="aTO-Ra-NgR">
             <objects>
                 <viewController title="Map" id="K5x-SP-acB" customClass="MapViewController" customModule="Maker_Faire_Orlando" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="N9t-26-Bdk"/>
-                        <viewControllerLayoutGuide type="bottom" id="p05-H5-IZD"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hQn-g1-yQb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -248,9 +242,10 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="xeY-4u-DpP" secondAttribute="trailing" constant="-10" id="75O-fe-kjH"/>
                             <constraint firstItem="xeY-4u-DpP" firstAttribute="leading" secondItem="hQn-g1-yQb" secondAttribute="leadingMargin" constant="-10" id="Vgb-9y-8vu"/>
-                            <constraint firstItem="xeY-4u-DpP" firstAttribute="top" secondItem="N9t-26-Bdk" secondAttribute="bottom" id="a0d-R4-1T9"/>
-                            <constraint firstItem="p05-H5-IZD" firstAttribute="top" secondItem="xeY-4u-DpP" secondAttribute="bottom" id="xb1-4f-BvD"/>
+                            <constraint firstItem="xeY-4u-DpP" firstAttribute="top" secondItem="Efb-X5-vYS" secondAttribute="top" id="a0d-R4-1T9"/>
+                            <constraint firstItem="Efb-X5-vYS" firstAttribute="bottom" secondItem="xeY-4u-DpP" secondAttribute="bottom" id="xb1-4f-BvD"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Efb-X5-vYS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="B9H-B9-pbX"/>
                     <connections>
@@ -262,35 +257,10 @@
             </objects>
             <point key="canvasLocation" x="3605.5999999999999" y="2279.9100449775115"/>
         </scene>
-        <!--Makers-->
-        <scene sceneID="ZRg-DA-TL4">
-            <objects>
-                <tableViewController storyboardIdentifier="MakerViewController" id="C4k-rR-WmG" customClass="MakerViewController" customModule="Maker_Faire_Orlando" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Makers" id="PwH-bD-iy2"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="hhO-ok-oie" id="rfP-ZU-Fif"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qVm-y1-0M9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="hhO-ok-oie">
-                    <connections>
-                        <outlet property="delegate" destination="C4k-rR-WmG" id="1h6-Xv-2IC"/>
-                        <outlet property="searchContentsController" destination="C4k-rR-WmG" id="cKF-yC-h0F"/>
-                        <outlet property="searchResultsDataSource" destination="C4k-rR-WmG" id="4ty-it-46J"/>
-                        <outlet property="searchResultsDelegate" destination="C4k-rR-WmG" id="vwj-bu-Ezg"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="5994" y="1125"/>
-        </scene>
         <!--Maker Detail View Controller-->
         <scene sceneID="Sob-ay-xAO">
             <objects>
                 <viewController storyboardIdentifier="MakerDetailViewController" id="zIW-un-Wzg" customClass="MakerDetailViewController" customModule="Maker_Faire_Orlando" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IrO-ul-Z8v"/>
-                        <viewControllerLayoutGuide type="bottom" id="9oc-c8-qH9"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l6b-f9-FEc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -361,11 +331,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="oCR-kV-V9R" firstAttribute="top" secondItem="IrO-ul-Z8v" secondAttribute="bottom" id="3pB-Hb-sjT"/>
+                            <constraint firstItem="oCR-kV-V9R" firstAttribute="top" secondItem="Ddw-DF-g9q" secondAttribute="top" id="3pB-Hb-sjT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oCR-kV-V9R" secondAttribute="trailing" id="DxB-bG-1y2"/>
-                            <constraint firstItem="9oc-c8-qH9" firstAttribute="top" secondItem="oCR-kV-V9R" secondAttribute="bottom" id="GBU-Sg-DZp"/>
+                            <constraint firstItem="Ddw-DF-g9q" firstAttribute="bottom" secondItem="oCR-kV-V9R" secondAttribute="bottom" id="GBU-Sg-DZp"/>
                             <constraint firstAttribute="leadingMargin" secondItem="oCR-kV-V9R" secondAttribute="leading" id="mLz-dc-IFa"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ddw-DF-g9q"/>
                     </view>
                     <connections>
                         <outlet property="makerDescription" destination="35X-wx-zql" id="9Bi-Oo-Vd0"/>
@@ -382,15 +353,11 @@
         <scene sceneID="GN8-gs-l0e">
             <objects>
                 <viewController title="Makers" id="3x1-p0-PGE" customClass="MakerViewController" customModule="Maker_Faire_Orlando" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YfD-FG-70T"/>
-                        <viewControllerLayoutGuide type="bottom" id="TWw-qd-xyh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="czc-Pb-cum">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="czc-Pb-cum">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="81M-pl-7hC">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="81M-pl-7hC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="bhX-2d-Jrp">
@@ -408,10 +375,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pnq-ZM-U46">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-6e-QK1">
-                                                    <rect key="frame" x="0.0" y="74" width="150" height="16"/>
+                                                    <rect key="frame" x="0.0" y="84" width="150" height="16"/>
                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="dYc-aQ-Ivg"/>
@@ -447,11 +414,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="81M-pl-7hC" firstAttribute="leading" secondItem="czc-Pb-cum" secondAttribute="leading" id="CYK-rn-mp4"/>
-                            <constraint firstItem="81M-pl-7hC" firstAttribute="top" secondItem="YfD-FG-70T" secondAttribute="bottom" id="WQ7-pN-SCn"/>
-                            <constraint firstItem="TWw-qd-xyh" firstAttribute="top" secondItem="81M-pl-7hC" secondAttribute="bottom" id="l4m-XD-80g"/>
-                            <constraint firstAttribute="trailing" secondItem="81M-pl-7hC" secondAttribute="trailing" id="lLw-mQ-hnh"/>
+                            <constraint firstItem="81M-pl-7hC" firstAttribute="leading" secondItem="Dls-H0-naz" secondAttribute="leading" id="CYK-rn-mp4"/>
+                            <constraint firstItem="81M-pl-7hC" firstAttribute="top" secondItem="Dls-H0-naz" secondAttribute="top" id="WQ7-pN-SCn"/>
+                            <constraint firstItem="Dls-H0-naz" firstAttribute="bottom" secondItem="81M-pl-7hC" secondAttribute="bottom" id="l4m-XD-80g"/>
+                            <constraint firstItem="Dls-H0-naz" firstAttribute="trailing" secondItem="81M-pl-7hC" secondAttribute="trailing" id="lLw-mQ-hnh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dls-H0-naz"/>
                     </view>
                     <navigationItem key="navigationItem" title="Makers" id="bKR-ys-1JT"/>
                     <connections>
