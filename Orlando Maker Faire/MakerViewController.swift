@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MyCell: UICollectionViewCell {
     @IBOutlet weak var textLabel: UILabel!
@@ -21,6 +22,53 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
          return makers.count
     }
     
+    func getImage(link:String?) -> UIImage {
+        if ( link == nil || link == "") {
+            return UIImage(named: "makey")!
+        }
+        var path: String?
+        print("Starting with url: ", link!)
+        if link!.hasPrefix("https://www.makerfaireorlando.com/wp-content/uploads/") {
+            path = String(link!.dropFirst(53))
+        } else if link!.hasPrefix("https://") {
+            path = String(link!.dropFirst(8))
+        }
+        print("Stripped url: ", path!)
+        
+        path = path!.replacingOccurrences(of: "/", with: "-")
+        print("File path: ", path!)
+
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let filename = paths[0].appendingPathComponent(path!)
+        
+        if FileManager.default.fileExists(atPath: filename.path) {
+            // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
+            let url = URL(string: filename.absoluteString)
+            let data = try? Data(contentsOf: url!)
+            print("Loaded cached image")
+            return UIImage(data: data!)!
+        } else {
+            print("no cached image for: ", filename.path)
+        }
+
+        
+        let url = URL(string: link!)
+        let data = try? Data(contentsOf: url!)
+        
+        do {
+            try data!.write(to: filename)
+            print("wrote image to:", filename)
+        } catch {
+            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
+            print("failed to write image file")
+        }
+        
+        return UIImage(data: data!)!
+        //cell.imageView?.image = UIImage(data: data!)
+    
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
@@ -29,6 +77,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         let maker = self.makers[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = maker.project_name
         
+        /*
         // TODO: Too slow without caching
         if ( maker.photo_link != nil ) {
             let url = URL(string: maker.photo_link!)
@@ -39,7 +88,8 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             cell.makerImage.image = UIImage(named: "makey")
             //cell.imageView?.image = UIImage(named: "makey")
         }
-        
+        */
+        cell.makerImage.image = getImage(link: maker.photo_link)
         
         //cell.textLabel?.text = String(indexPath.row + 1)
         print("Got cell \(indexPath.row)")
@@ -63,6 +113,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var activityIndicator: UIActivityIndicatorView!
 
+    var makeyImage: UIImage?
     
     override func viewDidLoad() {
         print("View did load")
@@ -80,6 +131,39 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         // Register cell classes
        // self.makerCollectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
+  
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Thumbnail", in: context)
+        let newThumbnail = NSManagedObject(entity: entity!, insertInto: context)
+        
+        let makey = UIImage(named: "makey.png")
+        newThumbnail.setValue("makey", forKey: "tag")
+        newThumbnail.setValue(makey?.pngData(), forKey: "image")
+        do {
+            try context.save()
+            print("saved")
+        } catch {
+            print("Failed saving")
+        }
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Thumbnail")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                
+                print(data.value(forKey: "tag") as! String)
+                let image: Data = data.value(forKey: "image")! as! Data
+                let decodedimage = UIImage(data: image)
+                makeyImage = decodedimage
+                print("Got an image")
+            }
+        } catch {
+            print("Failed")
+        }
+
 
         
         self.api!.getMakers()
@@ -95,6 +179,28 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
 
+    func uncacheImage(tag: String) -> UIImage? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Thumbnail")
+        request.predicate = NSPredicate(format: "tag == %@", tag)
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                
+                print(data.value(forKey: "tag") as! String)
+                let image: Data = data.value(forKey: "image")! as! Data
+                let decodedimage = UIImage(data: image)
+                print("Got an image")
+                return decodedimage
+            }
+        } catch {
+            print("Failed")
+        }
+        return nil
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -115,7 +221,8 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             cellImg.image = UIImage(data: data!)
             //cell.imageView?.image = UIImage(data: data!)
         } else {
-            cellImg.image = UIImage(named: "makey")
+            //cellImg.image = UIImage(named: "makey")
+            cellImg.image = makeyImage
             //cell.imageView?.image = UIImage(named: "makey")
         }
         //cellImg.image = UIImage(named: "yourimage.png")

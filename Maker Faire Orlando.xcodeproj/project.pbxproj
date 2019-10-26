@@ -21,7 +21,7 @@
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
 		46A18C67226B405F0089FA75 /* MF-2018-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 46A18C66226B405F0089FA75 /* MF-2018-button.png */; };
-		46B386A3227F5BC200C254F7 /* Images.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46B386A1227F5BC200C254F7 /* Images.xcdatamodeld */; };
+		46B386A3227F5BC200C254F7 /* cache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46B386A1227F5BC200C254F7 /* cache.xcdatamodeld */; };
 		46C82302217BBF3A0031CBF1 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D427481DB56EC5007AD5CE /* map.png */; };
 		46C82305217BC1690031CBF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110345BB1945759200F5C99F /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -92,13 +92,13 @@
 				46A18C66226B405F0089FA75 /* MF-2018-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
-				110345B21945759200F5C99F /* AppDelegate.swift */,
 				110345B41945759200F5C99F /* MapViewController.swift */,
 				110345B61945759200F5C99F /* EventViewController.swift */,
 				11160270197220BE005B98DD /* EventDetailViewController.swift */,
 				113C561E1946A4AC00CAFC27 /* MakerViewController.swift */,
 				1154A6A81948019F004E8CD0 /* MakerDetailViewController.swift */,
-				46B386A1227F5BC200C254F7 /* Images.xcdatamodeld */,
+				110345B21945759200F5C99F /* AppDelegate.swift */,
+				46B386A1227F5BC200C254F7 /* cache.xcdatamodeld */,
 				11A7706D1949939700C7F7E8 /* Main.storyboard */,
 				462029191DAF05FE00484334 /* Launch.storyboard */,
 				110345BB1945759200F5C99F /* Images.xcassets */,
@@ -227,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46B386A3227F5BC200C254F7 /* Images.xcdatamodeld in Sources */,
+				46B386A3227F5BC200C254F7 /* cache.xcdatamodeld in Sources */,
 				1111F848194AC8D900505F3C /* EventAPI.swift in Sources */,
 				110345B71945759200F5C99F /* EventViewController.swift in Sources */,
 				110345B31945759200F5C99F /* AppDelegate.swift in Sources */,
@@ -368,7 +368,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";
@@ -386,7 +386,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";
@@ -420,13 +420,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		46B386A1227F5BC200C254F7 /* Images.xcdatamodeld */ = {
+		46B386A1227F5BC200C254F7 /* cache.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				46B386A2227F5BC200C254F7 /* Images.xcdatamodel */,
 			);
 			currentVersion = 46B386A2227F5BC200C254F7 /* Images.xcdatamodel */;
-			path = Images.xcdatamodeld;
+			path = cache.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

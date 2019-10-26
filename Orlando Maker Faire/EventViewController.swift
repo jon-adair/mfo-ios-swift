@@ -71,6 +71,22 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.textLabel!.text = event.name
         cell.detailTextLabel!.text = "\(event.start_time!) \(event.location!)"
         
+        // TODO: Too slow without caching
+        if ( event.image_large != nil ) {
+            let url = URL(string: event.image_large!)
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            cell.imageView?.image = UIImage(data: data!)
+            //cell.imageView?.image = UIImage(data: data!)
+        } else {
+            cell.imageView?.image = UIImage(named: "makey")
+            //cell.imageView?.image = UIImage(named: "makey")
+        }
+        var frame = cell.imageView?.frame
+        if (frame != nil) {
+            frame!.size.width = 200
+        cell.imageView?.frame = frame!
+        }
+        
         return cell
     }
     
