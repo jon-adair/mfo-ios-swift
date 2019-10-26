@@ -27,16 +27,16 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             return UIImage(named: "makey")!
         }
         var path: String?
-        print("Starting with url: ", link!)
+        //print("Starting with url: ", link!)
         if link!.hasPrefix("https://www.makerfaireorlando.com/wp-content/uploads/") {
             path = String(link!.dropFirst(53))
         } else if link!.hasPrefix("https://") {
             path = String(link!.dropFirst(8))
         }
-        print("Stripped url: ", path!)
+        //print("Stripped url: ", path!)
         
         path = path!.replacingOccurrences(of: "/", with: "-")
-        print("File path: ", path!)
+        //print("File path: ", path!)
 
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let filename = paths[0].appendingPathComponent(path!)
@@ -45,7 +45,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
             let url = URL(string: filename.absoluteString)
             let data = try? Data(contentsOf: url!)
-            print("Loaded cached image")
+            //print("Loaded cached image")
             return UIImage(data: data!)!
         } else {
             print("no cached image for: ", filename.path)
@@ -57,7 +57,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         do {
             try data!.write(to: filename)
-            print("wrote image to:", filename)
+            //print("wrote image to:", filename)
         } catch {
             // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
             print("failed to write image file")
@@ -65,8 +65,6 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         return UIImage(data: data!)!
         //cell.imageView?.image = UIImage(data: data!)
-    
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,7 +90,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         cell.makerImage.image = getImage(link: maker.photo_link)
         
         //cell.textLabel?.text = String(indexPath.row + 1)
-        print("Got cell \(indexPath.row)")
+        //print("Got cell \(indexPath.row)")
         //cell.backgroundColor = UIColor.red
         return cell
         
@@ -278,5 +276,14 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.makerCollectionView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
+        
+        let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+        dispatchQueue.async{
+            // Now start crawling images and caching them if we don't already have them
+            for maker in self.makers {
+                let image = self.getImage(link: maker.photo_link)
+            }
+        }
+        
     }
 }

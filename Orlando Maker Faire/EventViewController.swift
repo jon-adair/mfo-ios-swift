@@ -37,7 +37,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let convertedDate = dateFormatter.string(from: currentDate)
         print(convertedDate)
-        if convertedDate == "11/11/2018" {
+        if convertedDate == "11/10/2019" {
             self.daySegmentedControl.selectedSegmentIndex = 1
         }
         
@@ -55,6 +55,52 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    func getImage(link:String?) -> UIImage {
+        if ( link == nil || link == "") {
+            return UIImage(named: "makey")!
+        }
+        var path: String?
+        //print("Starting with url: ", link!)
+        if link!.hasPrefix("https://www.makerfaireorlando.com/wp-content/uploads/") {
+            path = String(link!.dropFirst(53))
+        } else if link!.hasPrefix("https://") {
+            path = String(link!.dropFirst(8))
+        }
+        //print("Stripped url: ", path!)
+        
+        path = path!.replacingOccurrences(of: "/", with: "-")
+        //print("File path: ", path!)
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let filename = paths[0].appendingPathComponent(path!)
+        
+        if FileManager.default.fileExists(atPath: filename.path) {
+            // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
+            let url = URL(string: filename.absoluteString)
+            let data = try? Data(contentsOf: url!)
+            //print("Loaded cached image")
+            return UIImage(data: data!)!
+        } else {
+            print("no cached image for: ", filename.path)
+        }
+        
+        
+        let url = URL(string: link!)
+        let data = try? Data(contentsOf: url!)
+        
+        do {
+            try data!.write(to: filename)
+            //print("wrote image to:", filename)
+        } catch {
+            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
+            print("failed to write image file")
+        }
+        
+        return UIImage(data: data!)!
+        //cell.imageView?.image = UIImage(data: data!)
+    }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.events.count == 1 && self.events[0].count == 0 {
             return 0
@@ -71,16 +117,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.textLabel!.text = event.name
         cell.detailTextLabel!.text = "\(event.start_time!) \(event.location!)"
         
-        // TODO: Too slow without caching
-        if ( event.image_large != nil ) {
-            let url = URL(string: event.image_large!)
-            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-            cell.imageView?.image = UIImage(data: data!)
-            //cell.imageView?.image = UIImage(data: data!)
-        } else {
-            cell.imageView?.image = UIImage(named: "makey")
-            //cell.imageView?.image = UIImage(named: "makey")
-        }
+        cell.imageView?.image = getImage(link: event.image_large)
+
         var frame = cell.imageView?.frame
         if (frame != nil) {
             frame!.size.width = 200

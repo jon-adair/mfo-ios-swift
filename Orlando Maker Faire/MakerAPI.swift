@@ -32,7 +32,7 @@ class MakerAPI {
             print(attributes)
             let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
             print(attributes[FileAttributeKey.modificationDate] as? Date)
-            let date2 = Date().addingTimeInterval(-60) //-86400)
+            let date2 = Date().addingTimeInterval(-86400) // 86400 = 1 day
             if timestamp < date2 {
                 print("Cached makers.json is old")
             } else {

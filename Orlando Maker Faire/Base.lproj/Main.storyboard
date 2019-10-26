@@ -28,8 +28,8 @@
                                         <rect key="frame" x="67.5" y="7" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
+                                            <segment title="November 9"/>
                                             <segment title="November 10"/>
-                                            <segment title="November 11"/>
                                         </segments>
                                     </segmentedControl>
                                 </barButtonItem>
