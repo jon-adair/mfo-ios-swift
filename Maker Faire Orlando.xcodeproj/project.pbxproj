@@ -22,8 +22,9 @@
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
 		4687EA112364F10E00E047D0 /* MF-2019-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687EA102364F10E00E047D0 /* MF-2019-button.png */; };
 		46B386A3227F5BC200C254F7 /* cache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46B386A1227F5BC200C254F7 /* cache.xcdatamodeld */; };
-		46C82302217BBF3A0031CBF1 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D427481DB56EC5007AD5CE /* map.png */; };
 		46C82305217BC1690031CBF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110345BB1945759200F5C99F /* Images.xcassets */; };
+		46EF69A9236D11E60051E1D3 /* map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46EF69A8236D11E60051E1D3 /* map.jpg */; };
+		46EF69AB236DCD730051E1D3 /* makey-blurred.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EF69AA236DCD730051E1D3 /* makey-blurred.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		46A18C68226B41080089FA75 /* makers-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "makers-json"; sourceTree = "<group>"; };
 		46B386A2227F5BC200C254F7 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
 		46D427481DB56EC5007AD5CE /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		46EF69A8236D11E60051E1D3 /* map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = map.jpg; sourceTree = "<group>"; };
+		46EF69AA236DCD730051E1D3 /* makey-blurred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "makey-blurred.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +90,9 @@
 			children = (
 				46A18C68226B41080089FA75 /* makers-json */,
 				46D427481DB56EC5007AD5CE /* map.png */,
+				46EF69A8236D11E60051E1D3 /* map.jpg */,
 				46394D001DB09BF50038538F /* makey.png */,
+				46EF69AA236DCD730051E1D3 /* makey-blurred.png */,
 				4620291B1DAF082200484334 /* MF-2016-button.png */,
 				465D84D91F75FC74006B332F /* MF-2017-button.png */,
 				46A18C66226B405F0089FA75 /* MF-2018-button.png */,
@@ -216,9 +221,10 @@
 				11A7706F1949939700C7F7E8 /* Main.storyboard in Resources */,
 				4687EA112364F10E00E047D0 /* MF-2019-button.png in Resources */,
 				46C82305217BC1690031CBF1 /* Images.xcassets in Resources */,
-				46C82302217BBF3A0031CBF1 /* map.png in Resources */,
+				46EF69A9236D11E60051E1D3 /* map.jpg in Resources */,
 				46394D021DB09BF50038538F /* makey.png in Resources */,
 				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
+				46EF69AB236DCD730051E1D3 /* makey-blurred.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,6 +47,10 @@ class EventDetailViewController : UIViewController {
             // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
             let url = URL(string: filename.absoluteString)
             let data = try? Data(contentsOf: url!)
+            if data == nil || data?.count == 0 {
+                return UIImage(named: "makey")!
+            }
+
             //print("Loaded cached image")
             return UIImage(data: data!)!
         } else {
@@ -56,7 +60,10 @@ class EventDetailViewController : UIViewController {
         
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
-        
+        if data == nil || data?.count == 0 {
+            return UIImage(named: "makey")!
+        }
+
         do {
             try data!.write(to: filename)
             //print("wrote image to:", filename)

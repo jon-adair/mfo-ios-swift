@@ -22,6 +22,20 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
          return makers.count
     }
     
+    func getImageAsync(link: String, completion: @escaping (_ image: UIImage?) -> Void) -> URLSessionDataTask? {
+        if let imageURL = URL(string: link) {
+            return URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+                if let data = data {
+                    completion(UIImage(data: data))
+                } else {
+                    completion(nil)
+                }
+            }
+        } else {
+            return nil
+        }
+    }
+    
     func getImage(link:String?) -> UIImage {
         if ( link == nil || link == "") {
             return UIImage(named: "makey")!
@@ -43,18 +57,24 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if FileManager.default.fileExists(atPath: filename.path) {
             // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
+            // in other words, once we have an image, cache it forever
             let url = URL(string: filename.absoluteString)
             let data = try? Data(contentsOf: url!)
             //print("Loaded cached image")
+            if data == nil || data?.count == 0 {
+                return UIImage(named: "makey")!
+            }
             return UIImage(data: data!)!
         } else {
             print("no cached image for: ", filename.path)
         }
 
-        
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
-        
+        if data == nil || data?.count == 0 {
+            return UIImage(named: "makey")!
+        }
+
         do {
             try data!.write(to: filename)
             //print("wrote image to:", filename)
@@ -87,7 +107,22 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             //cell.imageView?.image = UIImage(named: "makey")
         }
         */
-        cell.makerImage.image = getImage(link: maker.photo_link)
+        
+        //        cell.makerImage.image = getImage(link: maker.photo_link)
+        
+        // clumsy lazy-load instead
+        cell.makerImage.image = UIImage(named: "makey-blurred")
+        cell.tag = indexPath.row
+        let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+        dispatchQueue.async{
+            let image = self.getImage(link: maker.photo_link)
+            
+            DispatchQueue.main.async{
+                if(cell.tag == indexPath.row) {
+                    cell.makerImage.image = image
+                }
+            }
+        }
         
         //cell.textLabel?.text = String(indexPath.row + 1)
         //print("Got cell \(indexPath.row)")
@@ -95,6 +130,7 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         return cell
         
     }
+    
     
 
     let kCellIdentifier: String = "MakerCell"
@@ -272,7 +308,6 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Need to do this on the main thread because this gets called by an asynch background thread
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()
-            //self.makerTableView.reloadData()
             self.makerCollectionView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
@@ -281,9 +316,8 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
         dispatchQueue.async{
             // Now start crawling images and caching them if we don't already have them
             for maker in self.makers {
-                let image = self.getImage(link: maker.photo_link)
+                _ = self.getImage(link: maker.photo_link)
             }
         }
-        
     }
 }

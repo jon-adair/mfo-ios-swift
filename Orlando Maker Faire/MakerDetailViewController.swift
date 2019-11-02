@@ -46,6 +46,9 @@ class MakerDetailViewController : UIViewController {
             let url = URL(string: filename.absoluteString)
             let data = try? Data(contentsOf: url!)
             //print("Loaded cached image")
+            if data == nil || data?.count == 0 {
+                return UIImage(named: "makey")!
+            }
             return UIImage(data: data!)!
         } else {
             print("no cached image for: ", filename.path)
@@ -54,7 +57,10 @@ class MakerDetailViewController : UIViewController {
         
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
-        
+        if data == nil || data?.count == 0 {
+            return UIImage(named: "makey")!
+        }
+
         do {
             try data!.write(to: filename)
             //print("wrote image to:", filename)

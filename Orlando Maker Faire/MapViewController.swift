@@ -53,19 +53,36 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let filename = paths[0].appendingPathComponent(path!)
         
-        if FileManager.default.fileExists(atPath: filename.path) {
-            // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
-            let url = URL(string: filename.absoluteString)
-            let data = try? Data(contentsOf: url!)
-            //print("Loaded cached image")
-            return UIImage(data: data!)!
-        } else {
-            print("no cached image for: ", filename.path)
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
+            print(attributes)
+            let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
+            print(attributes[FileAttributeKey.modificationDate] as? Date)
+            // check for a new map after an hour
+            let date2 = Date().addingTimeInterval(-3600) // 86400 = 1 day - 3600 is one hour
+            if timestamp < date2 {
+                print("Cached map is old")
+            } else {
+                print("Cached map is new")
+                let url = URL(string: filename.absoluteString)
+                let data = try? Data(contentsOf: url!)
+                if data == nil || data?.count == 0 {
+                    return UIImage(named: "map.jpg")!
+                }
+                //print("Loaded cached image")
+                return UIImage(data: data!)!
+            }
         }
-        
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+
         
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
+        if data == nil || data?.count == 0 {
+            return UIImage(named: "map.jpg")!
+        }
         
         do {
             try data!.write(to: filename)
@@ -82,7 +99,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.mapView.image = getImage(link:"https://jonadair.com/omf/map.png")
+        self.mapView.image = getImage(link:"https://jonadair.com/omf/map2019.jpg")
         
         /*
         if let url = URL(string: "https://jonadair.com/omf/map.png") {

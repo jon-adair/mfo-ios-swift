@@ -78,6 +78,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             // not going to bother checking cached timestamps on images since they should have a different URL if they're re-uploaded
             let url = URL(string: filename.absoluteString)
             let data = try? Data(contentsOf: url!)
+            if data == nil || data?.count == 0 {
+                return UIImage(named: "makey")!
+            }
+
             //print("Loaded cached image")
             return UIImage(data: data!)!
         } else {
@@ -87,7 +91,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
-        
+        if data == nil || data?.count == 0 {
+            return UIImage(named: "makey")!
+        }
+
         do {
             try data!.write(to: filename)
             //print("wrote image to:", filename)
@@ -117,13 +124,64 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.textLabel!.text = event.name
         cell.detailTextLabel!.text = "\(event.start_time!) \(event.location!)"
         
+        // clumsy lazy-load instead
+        cell.imageView?.image = UIImage(named: "makey-blurred")
+        // force imageviews to same size
+        // https://stackoverflow.com/questions/2788028/how-do-i-make-uitableviewcells-imageview-a-fixed-size-even-when-the-image-is-sm
+        let itemSize = CGSize.init(width: 44, height: 44)
+        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale);
+        let imageRect = CGRect.init(origin: CGPoint.zero, size: itemSize)
+        cell?.imageView?.image!.draw(in: imageRect)
+        cell?.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+
+        cell.tag = indexPath.row
+        let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+        dispatchQueue.async{
+            let image = self.getImage(link: event.image_large)
+            
+            DispatchQueue.main.async{
+                if(cell.tag == indexPath.row) {
+                    cell.imageView?.image = image
+                    // force imageviews to same size
+                    // https://stackoverflow.com/questions/2788028/how-do-i-make-uitableviewcells-imageview-a-fixed-size-even-when-the-image-is-sm
+                    let itemSize = CGSize.init(width: 44, height: 44)
+                    UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale);
+                    let imageRect = CGRect.init(origin: CGPoint.zero, size: itemSize)
+                    cell?.imageView?.image!.draw(in: imageRect)
+                    cell?.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!;
+                    UIGraphicsEndImageContext();
+
+                }
+            }
+        }
+        
+        /*
         cell.imageView?.image = getImage(link: event.image_large)
+        
+        // force imageviews to same size
+        // https://stackoverflow.com/questions/2788028/how-do-i-make-uitableviewcells-imageview-a-fixed-size-even-when-the-image-is-sm
+        let itemSize = CGSize.init(width: 44, height: 44)
+        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale);
+        let imageRect = CGRect.init(origin: CGPoint.zero, size: itemSize)
+        cell?.imageView?.image!.draw(in: imageRect)
+        cell?.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+        */
+
+        /*
+        var size = cell.imageView?.image?.size
+        if (size != nil) {
+            print("img",size)
+        }
 
         var frame = cell.imageView?.frame
         if (frame != nil) {
-            frame!.size.width = 200
-        cell.imageView?.frame = frame!
+            print(frame!.size)
+            frame!.size.width = 64
+            cell.imageView?.frame = frame!
         }
+ */
         
         return cell
     }
@@ -168,6 +226,16 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.activityIndicator.removeFromSuperview()
             self.eventTableView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+        
+        let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+        dispatchQueue.async{
+            // Now start crawling images and caching them if we don't already have them
+            for dayCounter in 0...count {
+                for ev in self.events[dayCounter] {
+                    _ = self.getImage(link: ev.image_large)
+                }
+            }
         }
     }
 
