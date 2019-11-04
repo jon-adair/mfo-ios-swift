@@ -4,15 +4,15 @@ iOS Application for Maker Faire Orlando
 
 ## Todo
 
-[ ] Would be great if the event data pre-loaded before the view appeared
+[x] Would be great if the event data pre-loaded before the view appeared
 
-[ ] The JSON (and pictures) really should be cached when retrieved
+[x] The JSON (and pictures) really should be cached when retrieved
 
-[ ] Map should be cached
+[x] Map should be cached
 
-[ ] Pull-to-refresh
+[x] Pull-to-refresh
 
-[ ] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
+[x] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
 
 [ ] The detail view layouts are a little rough and should collapse labels when they're empty
 
@@ -20,7 +20,7 @@ iOS Application for Maker Faire Orlando
 
 [x] Fix calling setNetworkActivityIndicator on background thread
 
-[ ] Event JSON 404s in simulator but not on actual device
+[?] Event JSON 404s in simulator but not on actual device
 
 
 
