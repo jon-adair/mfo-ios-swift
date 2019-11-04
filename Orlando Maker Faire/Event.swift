@@ -21,17 +21,16 @@ class Event {
     var additional_info:String?
     var location:String?
     
-    init(
-    name:String?,
-    image_large:String?,
-    description:String?,
-    date:String?,
-    start_time:String?,
-    end_time:String?,
-    duration:String?,
-    cost:String?,
-    additional_info:String?,
-    location:String?)
+    init(name:String?,
+         image_large:String?,
+         description:String?,
+         date:String?,
+         start_time:String?,
+         end_time:String?,
+         duration:String?,
+         cost:String?,
+         additional_info:String?,
+         location:String?)
     {
         self.name = name
         self.image_large = image_large
@@ -44,14 +43,4 @@ class Event {
         self.additional_info = additional_info
         self.location = location
     }
-    
-    /*
-    init(summary:String?, event_description:String?, location:String?, link:String?, start:NSDate?, end:NSDate?) {
-        self.summary = summary
-        self.event_description = event_description
-        self.location = location
-        self.link = link
-        self.start = start
-        self.end = end
-    }*/
 }
