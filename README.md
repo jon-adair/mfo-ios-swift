@@ -1,27 +1,40 @@
 # Maker-Faire-Orlando-iOS
 
-iOS Application for Maker Faire Orlando
+iOS Application for Maker Faire Orlando attendees
 
-## Todo
+## Todo for 2020
 
-[x] Would be great if the event data pre-loaded before the view appeared
+[ ] Event JSON processing should better handle date order
 
-[x] The JSON (and pictures) really should be cached when retrieved
+[ ] Event segmented control should get dates from events JSON
 
-[x] Map should be cached
+[ ] Async lazy-loading of maker images should cancel async task on cell reuse
 
-[x] Pull-to-refresh
+[ ] Async lazy-loading of event images should cancel async task on cell reuse
 
-[x] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
+[ ] JSON and image caching should use a more stock solution
+
+[ ] A lot of general fragility in error handling and optional unwrapping
+
+[ ] Poor handling if site is offline, DDOSed, or unreachable
+
+[ ] Would be good to hit a backup site if primary is offline
+
+[ ] Really should ship with an initial set of cached JSON and images
 
 [ ] The detail view layouts are a little rough and should collapse labels when they're empty
 
 [ ] The detail view layouts should handle images better - either resize imageview to match or crop images
 
-[x] Fix calling setNetworkActivityIndicator on background thread
+[ ] Maker collection view cell sizes could be better on different size classes
 
-[?] Event JSON 404s in simulator but not on actual device
+[ ] Maker collection view cell text could look better
 
+[ ] Red color is not consistent throughout app
+
+[ ] Map updating and caching logic is really rough
+
+[ ] Want a way to refresh map but pull-to-refresh in that scrollview is bad UX
 
 
 ## Copyright and license
