@@ -4,13 +4,13 @@ iOS Application for Maker Faire Orlando
 
 ## Todo
 
-[ ] Would be great if the event data pre-loaded before the view appeared
+[x] Would be great if the event data pre-loaded before the view appeared
 
-[ ] The JSON (and pictures) really should be cached
+[x] The JSON (and pictures) really should be cached
 
-[ ] Pull-to-refresh
+[x] Pull-to-refresh
 
-[ ] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
+[x] The maker list should either have thumbnail images in cells or be changed to a UICollectionView with images
 
 [ ] The detail view layouts are a little rough and should collapse labels when they're empty
 
