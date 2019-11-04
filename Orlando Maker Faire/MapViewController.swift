@@ -13,6 +13,22 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var mapView : UIImageView!
     @IBOutlet var scrollView : UIScrollView!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(EventViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        print("refresh")
+        //self.api?.getMakers(refresh:true)
+        refreshControl.endRefreshing()
+    }
+    
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
@@ -111,6 +127,11 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
+
+
+
+        self.scrollView.addSubview(self.refreshControl)
+
     }
     
     func setInitialZoom() {

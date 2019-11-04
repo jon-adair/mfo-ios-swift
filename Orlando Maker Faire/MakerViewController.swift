@@ -22,6 +22,22 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
          return makers.count
     }
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(EventViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        print("refresh")
+        self.api?.getMakers(refresh:true)
+        refreshControl.endRefreshing()
+    }
+    
     func getImageAsync(link: String, completion: @escaping (_ image: UIImage?) -> Void) -> URLSessionDataTask? {
         if let imageURL = URL(string: link) {
             return URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
@@ -198,9 +214,10 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
             print("Failed")
         }
 
+        self.makerCollectionView.addSubview(self.refreshControl)
 
         
-        self.api!.getMakers()
+        self.api!.getMakers(refresh:false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -284,7 +301,8 @@ class MakerViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func didReceiveAPIResults(_ results: NSDictionary) {
-        
+        makers = []
+
         let allResults: [NSDictionary] = results["accepteds"] as! [NSDictionary]
     
         for result:NSDictionary in allResults {

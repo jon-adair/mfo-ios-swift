@@ -20,34 +20,38 @@ class EventAPI {
         self.delegate = delegate
     }
     
-    func getEvents() {
+    func getEvents(refresh: Bool) {
         
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let path = paths[0]
         let filename = path.appendingPathComponent("events.json")
         
-        
-        do {
-            let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
-            print(attributes)
-            let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
-            print(attributes[FileAttributeKey.modificationDate] as? Date)
-            let date2 = Date().addingTimeInterval(-43200) // 86400 secs = 1 day
-            if timestamp < date2 {
-                print("Cached events.json is old")
-            } else {
-                print("Cached events.json is new")
-                let dataStr = try String(contentsOfFile: filename.path)
-                let data = dataStr.data(using: .utf8)!
-                let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                print("Events results loaded")
-                // Now send the JSON result to our delegate object
-                self.delegate?.didReceiveAPIResults(jsonResult)
-                return
+        if refresh {
+            print("forcing refresh")
+        } else {
+            print("not refreshing, checking cache")
+            do {
+                let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
+                print(attributes)
+                let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
+                print(attributes[FileAttributeKey.modificationDate] as? Date)
+                let date2 = Date().addingTimeInterval(-3600) // 86400 secs = 1 day
+                if timestamp < date2 {
+                    print("Cached events.json is old")
+                } else {
+                    print("Cached events.json is new")
+                    let dataStr = try String(contentsOfFile: filename.path)
+                    let data = dataStr.data(using: .utf8)!
+                    let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                    print("Events results loaded")
+                    // Now send the JSON result to our delegate object
+                    self.delegate?.didReceiveAPIResults(jsonResult)
+                    return
+                }
             }
-        }
-        catch let error as NSError {
-            print("Ooops! Something went wrong: \(error)")
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
         }
         
         let urlPath = "https://www.makerfaireorlando.com/events-json/"

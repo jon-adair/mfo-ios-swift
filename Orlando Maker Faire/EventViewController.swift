@@ -18,7 +18,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet var eventTableView : UITableView!
     var activityIndicator: UIActivityIndicatorView!
     
-    
+    var initialLoad = true
     
     var events: [[Event]] = [[]]
     
@@ -26,7 +26,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         self.api = EventAPI(delegate: self)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        self.api?.getEvents()
+        self.api?.getEvents(refresh:false)
         self.daySegmentedControl.addTarget(self, action: #selector(EventViewController.handleSegment(_:)), for: UIControl.Event.valueChanged)
         
         // If we're on day 2 of the event, default the view to day 2 (segment 1)
@@ -47,7 +47,42 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.startAnimating();
         self.view.addSubview(activityIndicator)
+        self.view.addSubview(self.refreshControl)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        leftSwipe.direction = .left
+        view.addGestureRecognizer(leftSwipe)
 
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func swipeLeft() {
+        if self.daySegmentedControl.selectedSegmentIndex == 1 { return }
+        self.daySegmentedControl.selectedSegmentIndex = 1
+        self.eventTableView.reloadData()
+    }
+    @objc func swipeRight() {
+        if self.daySegmentedControl.selectedSegmentIndex == 0 { return }
+        self.daySegmentedControl.selectedSegmentIndex = 0
+        self.eventTableView.reloadData()
+    }
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(EventViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        print("refresh")
+        self.api?.getEvents(refresh:true)
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,8 +159,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.textLabel!.text = event.name
         cell.detailTextLabel!.text = "\(event.start_time!) \(event.location!)"
         
-        // clumsy lazy-load instead
-        cell.imageView?.image = UIImage(named: "makey-blurred")
+        if self.initialLoad {
+            // clumsy lazy-load instead
+            cell.imageView?.image = UIImage(named: "makey-blurred")
+        } else {
+            // now that the images are cached just use them directly so we don't flash a tiny makey at all
+            cell.imageView?.image = self.getImage(link: event.image_large)
+        }
         // force imageviews to same size
         // https://stackoverflow.com/questions/2788028/how-do-i-make-uitableviewcells-imageview-a-fixed-size-even-when-the-image-is-sm
         let itemSize = CGSize.init(width: 44, height: 44)
@@ -195,13 +235,17 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func didReceiveAPIResults(_ results: NSDictionary) {
+        events = [[]]
+
+            //var events: [[Event]] = [[]]
         let days: NSArray = results["days"] as! NSArray
+        
         self.events.append([Event]())
         let count = days.count - 1
         for dayCounter in 0...count {
             let day: NSDictionary = days[dayCounter] as! NSDictionary
-            let date_title = day["date_title"] as! NSString
-            // daySegmentedControl.setTitle(day["date_title"] as! String!, forSegmentAtIndex: 0)
+            let date_title = day["date_title"] as! String
+            //daySegmentedControl.setTitle(date_title, forSegmentAt: dayCounter) // really should go back to this but needs to be after order fix
             print("date_title = \(date_title)")
             let ev: [NSDictionary] = day["events"] as! [NSDictionary]
             for e in ev {
@@ -221,6 +265,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         
+        // Can't rely on the JSON being in date order so need to re-sort the array
+        // really hacky kludge to patch it for the moment
+        // should use the top level date_title instead but that's not stored in this array
+        if count == 1 {
+            if self.events[0][0].date?.compare(self.events[1][0].date!) != ComparisonResult.orderedDescending {
+                print("dates were out of order")
+                self.events.swapAt(0,1)
+            }
+            print(self.events[0][0].date)
+            print(self.events[1][0].date)
+        }
+        
         // Need to do this back on the main thread because this gets called by an asynch background thread
         DispatchQueue.main.async{
             self.activityIndicator.removeFromSuperview()
@@ -236,6 +292,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                     _ = self.getImage(link: ev.image_large)
                 }
             }
+            self.initialLoad = false
         }
     }
 

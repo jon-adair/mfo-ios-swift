@@ -20,34 +20,37 @@ class MakerAPI {
         self.delegate = delegate
     }
     
-    func getMakers() {
+    func getMakers(refresh:Bool) {
         
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let path = paths[0]
         let filename = path.appendingPathComponent("makers.json")
 
-
-        do {
-            let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
-            print(attributes)
-            let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
-            print(attributes[FileAttributeKey.modificationDate] as? Date)
-            let date2 = Date().addingTimeInterval(-86400) // 86400 = 1 day
-            if timestamp < date2 {
-                print("Cached makers.json is old")
-            } else {
-                print("Cached makers.json is new")
-                let dataStr = try String(contentsOfFile: filename.path)
-                let data = dataStr.data(using: .utf8)!
-                let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                print("Maker results loaded")
-                // Now send the JSON result to our delegate object
-                self.delegate?.didReceiveAPIResults(jsonResult)
-                return
+        if refresh {
+            print("refreshing, skipping cache")
+        } else {
+            do {
+                let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
+                print(attributes)
+                let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
+                print(attributes[FileAttributeKey.modificationDate] as? Date)
+                let date2 = Date().addingTimeInterval(-43200) // 86400 = 1 day
+                if timestamp < date2 {
+                    print("Cached makers.json is old")
+                } else {
+                    print("Cached makers.json is new")
+                    let dataStr = try String(contentsOfFile: filename.path)
+                    let data = dataStr.data(using: .utf8)!
+                    let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                    print("Maker results loaded")
+                    // Now send the JSON result to our delegate object
+                    self.delegate?.didReceiveAPIResults(jsonResult)
+                    return
+                }
             }
-        }
-        catch let error as NSError {
-            print("Ooops! Something went wrong: \(error)")
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
         }
         
         
@@ -56,12 +59,15 @@ class MakerAPI {
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)
         let session = URLSession.shared
         session.configuration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
+        
+        
 
         let task = session.dataTask(with: urlRequest as URLRequest) {
             (data, response, error) -> Void in
+        
             
             if (error != nil) {
-                print(error!)
+                print("error:",error!)
                 return
             }
             // WARNING: This dies when no connection is available
@@ -87,6 +93,8 @@ class MakerAPI {
                     }
                 } catch let error as NSError {
                     print("HTTP Error: \(error.localizedDescription)")
+                    
+
                 }
             }
         }
