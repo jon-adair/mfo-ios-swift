@@ -4,6 +4,8 @@ iOS Application for Maker Faire Orlando attendees
 
 ## Todo for 2020
 
+[ ] Avoid a world-wide pandemic
+
 [ ] Event JSON processing should better handle date order
 
 [ ] Event segmented control should get dates from events JSON
