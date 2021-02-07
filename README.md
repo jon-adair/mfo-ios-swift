@@ -2,7 +2,16 @@
 
 iOS Application for Maker Faire Orlando attendees
 
-## Todo for 2020
+## Pandemic
+
+There was no traditional Maker Faire Orlando in 2020. Still hopes for one in 2021.
+
+## Overhaul
+
+I'm really considering totally rebuilding this in Swift UI in the first half of 2021. 
+That would obsolete a good bit of the below todo list.
+
+## Todo for 2021
 
 [ ] Avoid a world-wide pandemic
 
