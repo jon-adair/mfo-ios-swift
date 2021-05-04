@@ -8,8 +8,9 @@ There was no traditional Maker Faire Orlando in 2020. Still hopes for one in 202
 
 ## Overhaul
 
-I'm really considering totally rebuilding this in Swift UI in the first half of 2021. 
-That would obsolete a good bit of the below todo list.
+~~I'm really considering totally rebuilding this in Swift UI in the first half of 2021. 
+That would obsolete a good bit of the below todo list.~~
+(I don't think we're quite ready for SwiftUI transition - wouldn't let iOS12- users get the latest app)
 
 ## Todo for 2021
 
@@ -43,7 +44,7 @@ That would obsolete a good bit of the below todo list.
 
 [ ] In detail view it's not entirely clear that "Spirit Building" is a location
 
-[ ] Maker collection view cell sizes could be better on different size classes
+[X] Maker collection view cell sizes could be better on different size classes
 
 [ ] Maker collection view cell text could look better
 
@@ -75,7 +76,8 @@ That would obsolete a good bit of the below todo list.
 
 ## Copyright and license
 
-The copyright status and license of the code is a little unclear.
+The historical copyright status and license of the code is a little unclear.
 
 The images (icon, map, launch screen badge, etc.) are licensed trademarks from Maker Media. 
 
+I (Jon Adair) intend for my code contributions to be public domain.

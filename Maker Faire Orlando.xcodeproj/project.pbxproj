@@ -20,6 +20,7 @@
 		11A77071194AB3B500C7F7E8 /* MakerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A77070194AB3B500C7F7E8 /* MakerAPI.swift */; };
 		4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462029191DAF05FE00484334 /* Launch.storyboard */; };
 		46394D021DB09BF50038538F /* makey.png in Resources */ = {isa = PBXBuildFile; fileRef = 46394D001DB09BF50038538F /* makey.png */; };
+		4685AF0326418F39003FEDC2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4685AF0226418F39003FEDC2 /* README.md */; };
 		4687EA112364F10E00E047D0 /* MF-2019-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4687EA102364F10E00E047D0 /* MF-2019-button.png */; };
 		46B386A3227F5BC200C254F7 /* cache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46B386A1227F5BC200C254F7 /* cache.xcdatamodeld */; };
 		46C82305217BC1690031CBF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110345BB1945759200F5C99F /* Images.xcassets */; };
@@ -46,6 +47,7 @@
 		11A77070194AB3B500C7F7E8 /* MakerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerAPI.swift; sourceTree = "<group>"; };
 		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		46394D001DB09BF50038538F /* makey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makey.png; sourceTree = "<group>"; };
+		4685AF0226418F39003FEDC2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		4687EA102364F10E00E047D0 /* MF-2019-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2019-button.png"; sourceTree = "<group>"; };
 		46A18C68226B41080089FA75 /* makers-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "makers-json"; sourceTree = "<group>"; };
 		46B386A2227F5BC200C254F7 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		110345A41945759200F5C99F = {
 			isa = PBXGroup;
 			children = (
+				4685AF0226418F39003FEDC2 /* README.md */,
 				110345AF1945759200F5C99F /* Maker Faire Orlando */,
 				110345C41945759200F5C99F /* Orlando Maker FaireTests */,
 				110345AE1945759200F5C99F /* Products */,
@@ -218,6 +221,7 @@
 				46EF69A9236D11E60051E1D3 /* map.jpg in Resources */,
 				46394D021DB09BF50038538F /* makey.png in Resources */,
 				4620291A1DAF05FE00484334 /* Launch.storyboard in Resources */,
+				4685AF0326418F39003FEDC2 /* README.md in Resources */,
 				46EF69AB236DCD730051E1D3 /* makey-blurred.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
