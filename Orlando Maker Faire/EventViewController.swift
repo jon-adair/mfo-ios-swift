@@ -9,17 +9,12 @@
 import UIKit
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EventAPIProtocol {
-    
     @IBOutlet weak var daySegmentedControl: UISegmentedControl!
-    let kCellIdentifier: String = "EventCell"
-    
-    var api: EventAPI?
-    
     @IBOutlet var eventTableView : UITableView!
+    let kCellIdentifier: String = "EventCell"
+    var api: EventAPI?
     var activityIndicator: UIActivityIndicatorView!
-    
     var initialLoad = true
-    
     var events: [[Event]] = [[]]
     
     override func viewDidLoad() {
@@ -75,7 +70,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             #selector(EventViewController.handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.red
-        
         return refreshControl
     }()
     
@@ -123,7 +117,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             print("no cached image for: ", filename.path)
         }
         
-        
         let url = URL(string: link!)
         let data = try? Data(contentsOf: url!)
         if data == nil || data?.count == 0 {
@@ -153,7 +146,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier)
-        
         
         let event = self.events[daySegmentedControl.selectedSegmentIndex][(indexPath as NSIndexPath).row]
         cell.textLabel!.text = event.name
@@ -195,34 +187,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
         }
-        
-        /*
-        cell.imageView?.image = getImage(link: event.image_large)
-        
-        // force imageviews to same size
-        // https://stackoverflow.com/questions/2788028/how-do-i-make-uitableviewcells-imageview-a-fixed-size-even-when-the-image-is-sm
-        let itemSize = CGSize.init(width: 44, height: 44)
-        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale);
-        let imageRect = CGRect.init(origin: CGPoint.zero, size: itemSize)
-        cell?.imageView?.image!.draw(in: imageRect)
-        cell?.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!;
-        UIGraphicsEndImageContext();
-        */
-
-        /*
-        var size = cell.imageView?.image?.size
-        if (size != nil) {
-            print("img",size)
-        }
-
-        var frame = cell.imageView?.frame
-        if (frame != nil) {
-            print(frame!.size)
-            frame!.size.width = 64
-            cell.imageView?.frame = frame!
-        }
- */
-        
         return cell
     }
     
@@ -273,8 +237,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print("dates were out of order")
                 self.events.swapAt(0,1)
             }
-            print(self.events[0][0].date)
-            print(self.events[1][0].date)
+            print(self.events[0][0].date ?? "")
+            print(self.events[1][0].date ?? "")
         }
         
         // Need to do this back on the main thread because this gets called by an asynch background thread

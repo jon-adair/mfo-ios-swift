@@ -13,7 +13,6 @@ protocol EventAPIProtocol {
 }
 
 class EventAPI {
-    
     var delegate: EventAPIProtocol?
     
     init(delegate: EventAPIProtocol?) {
@@ -34,7 +33,7 @@ class EventAPI {
                 let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
                 print(attributes)
                 let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
-                print(attributes[FileAttributeKey.modificationDate] as? Date)
+                print(attributes[FileAttributeKey.modificationDate] as? Date ?? "")
                 let date2 = Date().addingTimeInterval(-3600) // 86400 secs = 1 day
                 if timestamp < date2 {
                     print("Cached events.json is old")

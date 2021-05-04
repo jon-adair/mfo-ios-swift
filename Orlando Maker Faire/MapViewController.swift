@@ -13,6 +13,25 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var mapView : UIImageView!
     @IBOutlet var scrollView : UIScrollView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        self.mapView.image = getImage(link:"https://jonadair.com/omf/map2019.jpg")
+        
+        /*
+        if let url = URL(string: "https://jonadair.com/omf/map.png") {
+            mapView.contentMode = .scaleAspectFit
+            print("downloading")
+            downloadImage(from: url)
+        }
+ */
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+
+        self.scrollView.addSubview(self.refreshControl)
+    }
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
@@ -50,6 +69,40 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func setInitialZoom() {
+        if mapView?.image != nil {
+            // Initial zoom should fit the entire image on the screen
+            scrollView.zoomScale = min(scrollView.frame.size.width / (mapView.image?.size.width)!, scrollView.frame.size.height / (mapView.image?.size.height)!)
+            // That's also the most zoomed-out we want to allow
+            scrollView.minimumZoomScale = scrollView.zoomScale
+            
+            print("initial zoom: ".appendingFormat("%f", scrollView.zoomScale))
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setInitialZoom()
+    }
+    
+    @objc func doubleTapped() {
+        if scrollView.zoomScale == scrollView.minimumZoomScale {
+            scrollView.zoomScale = scrollView.zoomScale * 3
+        } else {
+            scrollView.zoomScale = scrollView.minimumZoomScale
+        }
+    }
+        
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.mapView
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: image caching
     func getImage(link:String?) -> UIImage {
         if ( link == nil || link == "") {
             return UIImage(named: "makey")!
@@ -73,7 +126,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
             let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
             print(attributes)
             let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
-            print(attributes[FileAttributeKey.modificationDate] as? Date)
+            print(attributes[FileAttributeKey.modificationDate] as? Date ?? "")
             // check for a new map after an hour
             let date2 = Date().addingTimeInterval(-3600) // 86400 = 1 day - 3600 is one hour
             if timestamp < date2 {
@@ -112,63 +165,6 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         //cell.imageView?.image = UIImage(data: data!)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.mapView.image = getImage(link:"https://jonadair.com/omf/map2019.jpg")
-        
-        /*
-        if let url = URL(string: "https://jonadair.com/omf/map.png") {
-            mapView.contentMode = .scaleAspectFit
-            print("downloading")
-            downloadImage(from: url)
-        }
- */
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
-
-
-
-        self.scrollView.addSubview(self.refreshControl)
-
-    }
-    
-    func setInitialZoom() {
-        if mapView?.image != nil {
-            // Initial zoom should fit the entire image on the screen
-            scrollView.zoomScale = min(scrollView.frame.size.width / (mapView.image?.size.width)!, scrollView.frame.size.height / (mapView.image?.size.height)!)
-            // That's also the most zoomed-out we want to allow
-            scrollView.minimumZoomScale = scrollView.zoomScale
-            
-            print("initial zoom: ".appendingFormat("%f", scrollView.zoomScale))
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setInitialZoom()
-    }
-    
-    @objc func doubleTapped() {
-        if scrollView.zoomScale == scrollView.minimumZoomScale {
-            scrollView.zoomScale = scrollView.zoomScale * 3
-        } else {
-            scrollView.zoomScale = scrollView.minimumZoomScale
-        }
-    }
-        
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.mapView
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 

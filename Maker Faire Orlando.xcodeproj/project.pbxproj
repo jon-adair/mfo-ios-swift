@@ -45,11 +45,8 @@
 		11A7706E1949939700C7F7E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11A77070194AB3B500C7F7E8 /* MakerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakerAPI.swift; sourceTree = "<group>"; };
 		462029191DAF05FE00484334 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		4620291B1DAF082200484334 /* MF-2016-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2016-button.png"; sourceTree = "<group>"; };
 		46394D001DB09BF50038538F /* makey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makey.png; sourceTree = "<group>"; };
-		465D84D91F75FC74006B332F /* MF-2017-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2017-button.png"; sourceTree = "<group>"; };
 		4687EA102364F10E00E047D0 /* MF-2019-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2019-button.png"; sourceTree = "<group>"; };
-		46A18C66226B405F0089FA75 /* MF-2018-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MF-2018-button.png"; sourceTree = "<group>"; };
 		46A18C68226B41080089FA75 /* makers-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "makers-json"; sourceTree = "<group>"; };
 		46B386A2227F5BC200C254F7 /* Images.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Images.xcdatamodel; sourceTree = "<group>"; };
 		46D427481DB56EC5007AD5CE /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
@@ -93,9 +90,6 @@
 				46EF69A8236D11E60051E1D3 /* map.jpg */,
 				46394D001DB09BF50038538F /* makey.png */,
 				46EF69AA236DCD730051E1D3 /* makey-blurred.png */,
-				4620291B1DAF082200484334 /* MF-2016-button.png */,
-				465D84D91F75FC74006B332F /* MF-2017-button.png */,
-				46A18C66226B405F0089FA75 /* MF-2018-button.png */,
 				4687EA102364F10E00E047D0 /* MF-2019-button.png */,
 				1111F849194AC8E800505F3C /* api */,
 				1154A6AC1948026D004E8CD0 /* model */,
@@ -184,7 +178,7 @@
 		110345A51945759200F5C99F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Conner Brooks";
 				TargetAttributes = {
 					110345AC1945759200F5C99F = {
@@ -286,6 +280,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -310,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -342,6 +337,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -359,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -376,7 +372,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";
@@ -394,7 +390,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PW5CL64ZT8;
 				INFOPLIST_FILE = "Orlando Maker Faire/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.makerfaireorlando.makerfaireorlando;
 				PRODUCT_NAME = "Maker Faire Orlando";

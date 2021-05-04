@@ -33,7 +33,6 @@ class Maker {
         self.location = location
     }
     
-    
     init(project_name:String!, maker_description:String!, web_site:String!, organization:String!, project_short_summary:String!) {
         self.project_name = project_name
         self.maker_description = maker_description

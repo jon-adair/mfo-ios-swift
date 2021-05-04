@@ -13,7 +13,6 @@ protocol MakerAPIProtocol {
 }
 
 class MakerAPI {
-    
     var delegate: MakerAPIProtocol?
     
     init(delegate: MakerAPIProtocol?) {
@@ -21,7 +20,6 @@ class MakerAPI {
     }
     
     func getMakers(refresh:Bool) {
-        
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let path = paths[0]
         let filename = path.appendingPathComponent("makers.json")
@@ -33,7 +31,7 @@ class MakerAPI {
                 let attributes = try FileManager.default.attributesOfItem(atPath:filename.path)
                 print(attributes)
                 let timestamp = attributes[FileAttributeKey.modificationDate] as! Date
-                print(attributes[FileAttributeKey.modificationDate] as? Date)
+                print(attributes[FileAttributeKey.modificationDate] as? Date ?? "")
                 let date2 = Date().addingTimeInterval(-43200) // 86400 = 1 day
                 if timestamp < date2 {
                     print("Cached makers.json is old")
@@ -53,19 +51,15 @@ class MakerAPI {
             }
         }
         
-        
         let urlPath = "https://www.makerfaireorlando.com/makers-json/"
         let url: URL = URL(string: urlPath)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: url)
         let session = URLSession.shared
         session.configuration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         
-        
-
         let task = session.dataTask(with: urlRequest as URLRequest) {
             (data, response, error) -> Void in
         
-            
             if (error != nil) {
                 print("error:",error!)
                 return
@@ -93,8 +87,6 @@ class MakerAPI {
                     }
                 } catch let error as NSError {
                     print("HTTP Error: \(error.localizedDescription)")
-                    
-
                 }
             }
         }

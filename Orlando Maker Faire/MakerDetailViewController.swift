@@ -22,6 +22,26 @@ class MakerDetailViewController : UIViewController {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = self.maker?.project_name
+        
+        makerTitle.text = self.maker?.project_name
+        makerDescription.text = self.maker?.maker_description
+        makerLocation.text = self.maker?.location
+        
+        if self.maker?.location == "Unassigned" {
+            makerLocation.text = ""
+        }
+        makerPhoto.image = getImage(link: self.maker?.photo_link!)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: image caching
     func getImage(link:String?) -> UIImage {
         if ( link == nil || link == "") {
             return UIImage(named: "makey")!
@@ -72,27 +92,4 @@ class MakerDetailViewController : UIViewController {
         return UIImage(data: data!)!
         //cell.imageView?.image = UIImage(data: data!)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = self.maker?.project_name
-        
-        makerTitle.text = self.maker?.project_name
-        makerDescription.text = self.maker?.maker_description
-        makerLocation.text = self.maker?.location
-        
-        if self.maker?.location == "Unassigned" {
-            makerLocation.text = ""
-        }
-        
-        makerPhoto.image = getImage(link: self.maker?.photo_link!)
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
 }
